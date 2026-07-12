@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TinyMe — public links you can still control. Shorten, route, update, and understand every link your team publishes." />
+  <meta name="theme-color" content="#11100d" />
+  <title>TinyMe — Public links you can still control.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="tinyme">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header tinyme-header" data-header>
+    <a class="tinyme-brand" href="/tinyme" aria-label="TinyMe home">
+      <img src="/assets/brand/tinyme-gold.webp" alt="" width="30" height="32" />
+      <strong>TinyMe</strong>
+      <span class="by mono">By Ordani</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#demo">Demo</a>
+      <a href="#features">Features</a>
+      <a href="#control">Control</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#api">API</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="header-cta" href="#demo">Try it free <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+      <span>Menu</span>
+      <span class="glyph" aria-hidden="true">+</span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden data-mobile-nav>
+    <a href="#demo">Demo</a>
+    <a href="#features">Features</a>
+    <a href="#control">Control</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#api">API</a>
+    <a href="#pricing">Pricing</a>
+    <a href="/">Ordani ↗</a>
+  </nav>
+
+  <main id="main">
+    <!-- ============================================
+         HERO
+         ============================================ -->
+    <section class="tm-hero section-shell">
+      <div class="tm-hero-copy">
+        <div class="tm-kicker mono reveal"><span class="live-dot"></span> Private prototype / sample data labeled</div>
+        <h1 data-split>
+          <span>Public links</span>
+          <span class="gold">you can still control.</span>
+        </h1>
+        <p class="reveal">Shorten, route, update, and understand every link your team publishes. Change the destination, not the print.</p>
+        <div class="tm-actions reveal">
+          <a class="btn btn-gold" href="#demo">Try the prototype <span aria-hidden="true">↓</span></a>
+          <a class="text-link" href="#features">See all features <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="system-diagram reveal" aria-label="TinyMe system diagram">
+        <div class="diagram-center">
+          <img src="/assets/brand/tinyme-gold.webp" alt="" width="56" height="60" />
+        </div>
+        <div class="diagram-ring"></div>
+        <div class="diagram-ring-2"></div>
+        <div class="diagram-line diagram-line-h"></div>
+        <div class="diagram-line diagram-line-v"></div>
+        <div class="diagram-node"><span class="dot"></span><span class="node-label">Link</span></div>
+        <div class="diagram-node"><span class="dot"></span><span class="node-label">Rule</span></div>
+        <div class="diagram-node"><span class="dot"></span><span class="node-label">Event</span></div>
+        <div class="diagram-node"><span class="dot"></span><span class="node-label">Destination</span></div>
+      </div>
+
+      <div class="tm-hero-footer mono">
+        <span>One small link</span><span>Full control</span><span>Sample data labeled</span>
+      </div>
+    </section>
+
+    <!-- ============================================
+         INTERACTIVE DEMO
+         ============================================ -->
+    <section class="tm-section section-shell" id="demo" aria-labelledby="demo-title">
+      <div class="section-label mono reveal"><span>01</span><span>Working prototype</span></div>
+      <div class="work-header reveal">
+        <h2 id="demo-title">Turn any URL into a durable control point.</h2>
+        <p>This demo runs entirely in your browser. No network requests. All data is local and sample.</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-shorten-panel reveal">
+          <div class="demo-disclosure mono">Sample data / no network request</div>
+          <form class="shorten-form" data-shorten-form>
+            <label for="demo-url" class="mono">Paste a destination</label>
+            <div class="shorten-input-row">
+              <input id="demo-url" name="url" type="url" data-shorten-input value="https://store.example.com/campaigns/summer/product/new-release-2026" required placeholder="https://example.com/your-long-url" />
+              <button class="btn btn-gold" type="submit">Create link ↗</button>
+            </div>
+            <div class="shorten-options">
+              <label>
+                <span class="option-label mono">Custom slug</span>
+                <input name="slug" value="summer" pattern="[a-zA-Z0-9-]+" placeholder="my-link" />
+              </label>
+              <label>
+                <span class="option-label mono">Domain</span>
+                <select name="domain">
+                  <option>tinyme.cc</option>
+                  <option>go.ordani.studio</option>
+                </select>
+              </label>
+              <label>
+                <span class="option-label mono">Route</span>
+                <select name="route">
+                  <option>Direct</option>
+                  <option>Mobile split</option>
+                  <option>Scheduled</option>
+                </select>
+              </label>
+            </div>
+            <output class="shorten-result" data-shorten-result aria-live="polite">
+              <span class="result-status mono">Ready</span>
+              <strong class="result-link" data-result-url>tinyme.cc/summer</strong>
+              <button type="button" data-copy-btn class="copy-btn">Copy</button>
+            </output>
+          </form>
+        </div>
+
+        <div class="demo-preview-panel reveal">
+          <div class="preview-header mono">
+            <span class="preview-title">Link preview</span>
+            <span class="preview-status"><span class="live-dot"></span> Sample</span>
+          </div>
+          <div class="preview-card" data-preview-card>
+            <div class="preview-domain">tinyme.cc</div>
+            <div class="preview-slug" data-preview-slug>/summer</div>
+            <div class="preview-meta">
+              <div class="preview-row"><span class="mono">Destination</span><span data-preview-dest>store.example.com/summer-2026</span></div>
+              <div class="preview-row"><span class="mono">Status</span><span class="status-active">Active</span></div>
+              <div class="preview-row"><span class="mono">Created</span><span>Jul 01, 2026</span></div>
+              <div class="preview-row"><span class="mono">Clicks</span><span data-preview-clicks>0</span></div>
+            </div>
+            <div class="preview-actions">
+              <button type="button" class="btn btn-ghost btn-sm" data-preview-edit>Edit destination</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-preview-qr>QR code</button>
+            </div>
+          </div>
+          <div class="preview-events mono" aria-label="Sample event stream">
+            <div class="event-header">Recent events</div>
+            <div class="event-row"><span>Los Angeles</span><span>Mobile</span><span>Instagram</span><strong class="human">Human</strong></div>
+            <div class="event-row"><span>Toronto</span><span>Desktop</span><span>Direct</span><strong class="human">Human</strong></div>
+            <div class="event-row"><span>Frankfurt</span><span>Server</span><span>Preview</span><strong class="bot">Bot</strong></div>
+            <div class="event-row"><span>Sydney</span><span>Mobile</span><span>Twitter</span><strong class="human">Human</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FEATURES
+         ============================================ -->
+    <section class="tm-section section-shell" id="features" aria-labelledby="features-title">
+      <div class="section-label mono reveal"><span>02</span><span>Features</span></div>
+      <div class="work-header reveal">
+        <h2 id="features-title">Everything you need. Nothing you don't.</h2>
+        <p>Powerful tools built for teams and individuals who take their links seriously.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card feature-card-hero reveal">
+          <div class="feature-icon" aria-hidden="true">↗</div>
+          <h3>Editable destinations</h3>
+          <p>Change where a link points without reprinting, re-sharing, or losing a single click. Destination history and one-click rollback included.</p>
+          <ul class="feature-tags mono">
+            <li>Destination history</li>
+            <li>One-click rollback</li>
+            <li>Backup destinations</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">◆</div>
+          <h3>Routing rules</h3>
+          <p>Send different visitors to different destinations based on country, device, schedule, or weight. Fallback destinations handle the rest.</p>
+          <ul class="feature-tags mono">
+            <li>Country / region</li>
+            <li>Device type</li>
+            <li>Scheduled</li>
+            <li>Weighted</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">◎</div>
+          <h3>Privacy-aware analytics</h3>
+          <p>Human clicks, bots, referrers, devices, coarse geography, latency — all separated and honest. No fake totals. No surveillance.</p>
+          <ul class="feature-tags mono">
+            <li>Human vs bot</li>
+            <li>Coarse geography</li>
+            <li>Referrer tracking</li>
+            <li>Latency metrics</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">▣</div>
+          <h3>Custom domains</h3>
+          <p>Use your own branded domain. Automatic HTTPS, certificate health monitoring, and DNS verification built in.</p>
+          <ul class="feature-tags mono">
+            <li>Automatic HTTPS</li>
+            <li>Certificate health</li>
+            <li>DNS verification</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">⊞</div>
+          <h3>QR codes</h3>
+          <p>Generate QR codes for any link. Download as PNG or SVG. Include your brand colors. Track QR-specific scans separately.</p>
+          <ul class="feature-tags mono">
+            <li>PNG + SVG</li>
+            <li>Brand colors</li>
+            <li>Scan tracking</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">⊡</div>
+          <h3>Protection</h3>
+          <p>Password-protect links, set expiration dates, and limit total clicks. Expired links show a configurable landing page.</p>
+          <ul class="feature-tags mono">
+            <li>Password</li>
+            <li>Expiration</li>
+            <li>Click limits</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">⊟</div>
+          <h3>Tags and organization</h3>
+          <p>Tags, folders, and workspaces keep hundreds of links organized. Filter by tag, domain, status, or date range.</p>
+          <ul class="feature-tags mono">
+            <li>Tags</li>
+            <li>Folders</li>
+            <li>Workspaces</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">△</div>
+          <h3>Destination health</h3>
+          <p>Monitor whether your destination is actually reachable. Get alerted when response times spike or pages start returning errors.</p>
+          <ul class="feature-tags mono">
+            <li>Uptime checks</li>
+            <li>Response time</li>
+            <li>Error alerts</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================
+         HOW IT WORKS (DETAILED)
+         ============================================ -->
+    <section class="tm-section section-shell" id="how" aria-labelledby="how-title">
+      <div class="section-label mono reveal"><span>03</span><span>How it works</span></div>
+      <div class="work-header reveal">
+        <h2 id="how-title">Three moves. No friction.</h2>
+        <p>Up and running in seconds, not hours.</p>
+      </div>
+
+      <div class="how-steps">
+        <article class="how-step reveal">
+          <div>
+            <span class="how-step-num mono">01 / Publish</span>
+            <h3>Paste any URL. Get a permanent address.</h3>
+            <p>Drop any long, messy link into the shortener. Pick a memorable custom slug or let us generate one. Works with any URL — no sign-up required to try it.</p>
+          </div>
+          <div class="how-visual link-card">
+            <span class="mono-label">Your link</span>
+            <div class="big-text">tinyme.cc/summer</div>
+            <div class="how-features mono">
+              <span>Custom slug</span>
+              <span>Any domain</span>
+              <span>No sign-up to try</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="how-step reveal">
+          <div>
+            <span class="how-step-num mono">02 / Control</span>
+            <h3>Change the destination, not the print.</h3>
+            <p>Post your short link anywhere — posters, packaging, newsletters, QR codes, social profiles. Update campaigns, recover from broken pages, or route by device, country, and schedule.</p>
+          </div>
+          <div class="how-visual">
+            <span class="mono-label">Current destination</span>
+            <div class="big-text" data-destination>store.example.com/summer-2026</div>
+            <button class="btn-sm" type="button" data-swap-destination>Swap route</button>
+            <div class="how-features mono">
+              <span>Destination history</span>
+              <span>One-click rollback</span>
+              <span>Routing rules</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="how-step reveal">
+          <div>
+            <span class="how-step-num mono">03 / Understand</span>
+            <h3>See what happened without pretending every request is a person.</h3>
+            <p>Real-time analytics distinguish human clicks, preview crawlers, bots, and health checks. Country, device, referrer, latency, and destination health — all separated and honest.</p>
+          </div>
+          <div class="how-visual event-stream" aria-label="Sample analytics events">
+            <div class="event-row">Los Angeles · Mobile · Instagram · <strong class="human">Human</strong></div>
+            <div class="event-row">Toronto · Desktop · Direct · <strong class="human">Human</strong></div>
+            <div class="event-row">Frankfurt · Server · Preview · <strong class="bot">Bot</strong></div>
+            <div class="event-row">Sydney · Mobile · Twitter · <strong class="human">Human</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================
+         CONTROL CONSOLE
+         ============================================ -->
+    <section class="tm-section section-shell" id="control" aria-labelledby="control-title">
+      <div class="section-label mono reveal"><span>04</span><span>Control after publishing</span></div>
+      <div class="work-header reveal">
+        <h2 id="control-title">Inspect every link's system.</h2>
+        <p>A TinyMe link is a permanent public address with a controlled system behind it.</p>
+      </div>
+
+      <div class="route-console reveal" data-route-console>
+        <div class="console-sidebar">
+          <div class="console-brand mono"><img src="/assets/brand/tinyme-gold.webp" alt="" width="20" height="22" /> Link / Summer</div>
+          <button class="console-tab active" type="button" data-console-tab="destination"><span class="tab-num">01</span>Destination</button>
+          <button class="console-tab" type="button" data-console-tab="rules"><span class="tab-num">02</span>Rules</button>
+          <button class="console-tab" type="button" data-console-tab="history"><span class="tab-num">03</span>History</button>
+          <button class="console-tab" type="button" data-console-tab="health"><span class="tab-num">04</span>Health</button>
+          <button class="console-tab" type="button" data-console-tab="analytics"><span class="tab-num">05</span>Analytics</button>
+        </div>
+        <div class="console-main">
+          <div class="console-topbar mono"><span>tinyme.cc/summer</span><span class="status"><span class="live-dot"></span> Active</span></div>
+
+          <!-- Destination panel -->
+          <section class="console-panel" data-console-panel="destination">
+            <span class="panel-label mono">Current destination</span>
+            <div class="destination-display">
+              <span class="url" data-console-destination>store.example.com/summer-2026</span>
+              <button type="button" data-console-swap class="btn btn-ghost btn-sm">Change route</button>
+            </div>
+            <div class="console-facts">
+              <div><span class="fact-label mono">Last changed</span><span class="fact-value">2 hours ago</span></div>
+              <div><span class="fact-label mono">Changed by</span><span class="fact-value">Studio admin</span></div>
+              <div><span class="fact-label mono">Rollback</span><span class="fact-value">Available</span></div>
+            </div>
+            <div class="console-section">
+              <span class="panel-label mono">Protection</span>
+              <div class="console-facts" style="margin-top:12px">
+                <div><span class="fact-label mono">Password</span><span class="fact-value">Off</span></div>
+                <div><span class="fact-label mono">Expiration</span><span class="fact-value">None</span></div>
+                <div><span class="fact-label mono">Click limit</span><span class="fact-value">Unlimited</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Rules panel -->
+          <section class="console-panel" data-console-panel="rules" hidden>
+            <span class="panel-label mono">Routing rules</span>
+            <div class="rule-list">
+              <div class="rule-row"><span class="rule-num mono">01</span><strong>Mobile visitors</strong><span class="arrow">→ app.example.com</span><span class="status">Active</span></div>
+              <div class="rule-row"><span class="rule-num mono">02</span><strong>After Aug 30</strong><span class="arrow">→ archive.example.com</span><span class="status">Scheduled</span></div>
+              <div class="rule-row"><span class="rule-num mono">03</span><strong>US + Canada</strong><span class="arrow">→ store-na.example.com</span><span class="status">Active</span></div>
+              <div class="rule-row"><span class="rule-num mono">04</span><strong>Fallback</strong><span class="arrow">→ store.example.com</span><span class="status">Active</span></div>
+            </div>
+          </section>
+
+          <!-- History panel -->
+          <section class="console-panel" data-console-panel="history" hidden>
+            <span class="panel-label mono">Change history</span>
+            <div class="history-list">
+              <div class="history-item"><time class="mono">Today 09:42</time><strong>Destination updated</strong><span class="detail">summer-landing → summer-2026</span></div>
+              <div class="history-item"><time class="mono">Jul 08 14:10</time><strong>Mobile rule added</strong><span class="detail">app deep-link fallback enabled</span></div>
+              <div class="history-item"><time class="mono">Jul 05 09:00</time><strong>Destination updated</strong><span class="detail">summer-v1 → summer-landing</span></div>
+              <div class="history-item"><time class="mono">Jul 01 08:00</time><strong>Link created</strong><span class="detail">tinyme.cc/summer</span></div>
+            </div>
+          </section>
+
+          <!-- Health panel -->
+          <section class="console-panel" data-console-panel="health" hidden>
+            <span class="panel-label mono">Destination health</span>
+            <div class="health-display">
+              <div class="health-score">99<span class="unit">%</span></div>
+              <div class="health-info">
+                <strong>Healthy destination</strong>
+                <p>Last check returned HTTP 200 in 184ms. This is sample interface data, not a service promise.</p>
+              </div>
+            </div>
+            <div class="health-bars" aria-hidden="true">
+              <span style="--h:48%"></span><span style="--h:62%"></span><span style="--h:55%"></span>
+              <span style="--h:74%"></span><span style="--h:68%"></span><span style="--h:82%"></span>
+              <span style="--h:70%"></span><span style="--h:92%"></span><span style="--h:84%"></span>
+              <span style="--h:88%"></span><span style="--h:91%"></span><span style="--h:96%"></span>
+            </div>
+          </section>
+
+          <!-- Analytics mini panel -->
+          <section class="console-panel" data-console-panel="analytics" hidden>
+            <span class="panel-label mono">Link analytics / sample</span>
+            <div class="console-analytics-grid">
+              <div class="console-stat"><span class="stat-label mono">Human clicks</span><strong>2,840</strong></div>
+              <div class="console-stat"><span class="stat-label mono">Bot traffic</span><strong>312</strong></div>
+              <div class="console-stat"><span class="stat-label mono">P95 latency</span><strong>31ms</strong></div>
+            </div>
+            <div class="console-event-list mono">
+              <div class="event-row"><span>Los Angeles</span><span>Mobile</span><span>Instagram</span><strong class="human">Human</strong></div>
+              <div class="event-row"><span>Toronto</span><span>Desktop</span><span>Direct</span><strong class="human">Human</strong></div>
+              <div class="event-row"><span>Frankfurt</span><span>Server</span><span>Preview</span><strong class="bot">Bot</strong></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ANALYTICS (LIGHT BG)
+         ============================================ -->
+    <section class="tm-section tm-analytics section-shell" id="analytics" aria-labelledby="analytics-title">
+      <div class="section-label mono reveal"><span>05</span><span>Analytics without theater</span></div>
+      <div class="analytics-grid">
+        <div class="analytics-copy reveal">
+          <h2 id="analytics-title">A request is not automatically a person.</h2>
+          <p>TinyMe distinguishes human clicks, preview crawlers, bots, and health checks before presenting performance totals.</p>
+          <ul class="plain-list mono">
+            <li>Human clicks</li>
+            <li>Estimated visitors</li>
+            <li>Bot / crawler traffic</li>
+            <li>Referrers + devices</li>
+            <li>Coarse geography</li>
+            <li>Redirect latency</li>
+            <li>Destination health</li>
+            <li>Change history</li>
+          </ul>
+        </div>
+        <div class="analytics-board reveal">
+          <div class="board-head mono"><span>Link performance / sample</span><span>Jul 01 — Jul 07</span></div>
+          <div class="board-stat">
+            <span class="stat-label mono">Human clicks</span>
+            <strong data-counter="2840">0</strong>
+            <small>+18.4% sample comparison</small>
+          </div>
+          <div class="board-chart">
+            <svg viewBox="0 0 720 250" preserveAspectRatio="none" role="img" aria-label="Sample human click activity chart">
+              <path class="chart-area" d="M0,210 C80,195 66,154 136,164 C209,175 211,100 282,116 C354,132 363,70 430,82 C505,96 530,42 594,57 C648,69 678,22 720,30 L720,250 L0,250 Z" />
+              <path class="chart-line" d="M0,210 C80,195 66,154 136,164 C209,175 211,100 282,116 C354,132 363,70 430,82 C505,96 530,42 594,57 C648,69 678,22 720,30" />
+            </svg>
+          </div>
+          <div class="board-breakdown">
+            <div><span class="bk-label mono">Est. visitors</span><strong>1,964</strong><small>69% of human clicks</small></div>
+            <div><span class="bk-label mono">Bot traffic</span><strong>312</strong><small>Excluded above</small></div>
+            <div><span class="bk-label mono">P95 latency</span><strong>31ms</strong><small>Sample interface</small></div>
+          </div>
+          <div class="event-table mono">
+            <div><span>Los Angeles</span><span>Mobile</span><span>Instagram</span><strong class="human">Human</strong></div>
+            <div><span>Toronto</span><span>Desktop</span><span>Direct</span><strong class="human">Human</strong></div>
+            <div><span>Frankfurt</span><span>Server</span><span>Preview</span><strong class="bot">Bot</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PRODUCT MODEL
+         ============================================ -->
+    <section class="tm-section section-shell" id="product" aria-labelledby="product-title">
+      <div class="section-label mono reveal"><span>06</span><span>Product model</span></div>
+      <div class="work-header reveal">
+        <h2 id="product-title">Four objects keep the product understandable.</h2>
+        <p>Everything TinyMe does maps to a Link, Destination, Rule, or Event.</p>
+      </div>
+      <div class="object-grid">
+        <article class="object-card reveal">
+          <span class="obj-label mono">01 / Link</span>
+          <h3>The permanent public address.</h3>
+          <p>The slug, domain, owner, state, tags, protection, limits, and expiration.</p>
+          <i class="glyph" aria-hidden="true">lnk</i>
+        </article>
+        <article class="object-card reveal">
+          <span class="obj-label mono">02 / Destination</span>
+          <h3>Where it resolves now.</h3>
+          <p>A current target with health state, history, rollback, and backup behavior.</p>
+          <i class="glyph" aria-hidden="true">dst</i>
+        </article>
+        <article class="object-card reveal">
+          <span class="obj-label mono">03 / Rule</span>
+          <h3>Who goes where and when.</h3>
+          <p>Country, device, schedule, weight, deep-link, and fallback conditions.</p>
+          <i class="glyph" aria-hidden="true">rul</i>
+        </article>
+        <article class="object-card reveal">
+          <span class="obj-label mono">04 / Event</span>
+          <h3>What happened on access.</h3>
+          <p>A privacy-aware record of request type, route, timing, and coarse context.</p>
+          <i class="glyph" aria-hidden="true">evt</i>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================
+         API / DEVELOPER
+         ============================================ -->
+    <section class="tm-section section-shell" id="api" aria-labelledby="api-title">
+      <div class="section-label mono reveal"><span>07</span><span>Developer API</span></div>
+      <div class="work-header reveal">
+        <h2 id="api-title">Full API access. Your links, your apps.</h2>
+        <p>REST API and webhooks to create, manage, and track links directly from your own tools.</p>
+      </div>
+
+      <div class="api-grid">
+        <div class="api-code reveal">
+          <div class="code-header mono">
+            <span>Create a link</span>
+            <span>POST /api/links</span>
+          </div>
+          <pre class="code-block"><code><span class="code-key">curl</span> -X POST https://api.tinyme.cc/v1/links \
+  -H <span class="code-str">"Authorization: Bearer sk_live_..."</span> \
+  -H <span class="code-str">"Content-Type: application/json"</span> \
+  -d <span class="code-str">'{
+    "domain": "tinyme.cc",
+    "slug": "summer",
+    "destination": "https://store.example.com/summer-2026",
+    "tags": ["campaign", "summer"]
+  }'</span></code></pre>
+          <div class="code-response mono">
+            <span class="code-status">201 Created</span>
+            <pre class="code-block"><code>{
+  <span class="code-key">"id"</span>: <span class="code-str">"lnk_01"</span>,
+  <span class="code-key">"url"</span>: <span class="code-str">"https://tinyme.cc/summer"</span>,
+  <span class="code-key">"state"</span>: <span class="code-str">"active"</span>,
+  <span class="code-key">"destination"</span>: {
+    <span class="code-key">"url"</span>: <span class="code-str">"https://store.example.com/summer-2026"</span>,
+    <span class="code-key">"health"</span>: <span class="code-str">"healthy"</span>
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-features reveal">
+          <h3>Built for developers.</h3>
+          <div class="api-feature-list">
+            <div class="api-feature">
+              <strong>REST API</strong>
+              <p>Full CRUD on links, destinations, rules, and analytics. JSON in, JSON out.</p>
+            </div>
+            <div class="api-feature">
+              <strong>Webhooks</strong>
+              <p>Get notified when links are clicked, destinations change, or health degrades.</p>
+            </div>
+            <div class="api-feature">
+              <strong>Rate limits</strong>
+              <p>Generous free tier. Paid tiers scale with your usage. No surprise bills.</p>
+            </div>
+            <div class="api-feature">
+              <strong>SDKs</strong>
+              <p>JavaScript, Python, and PHP SDKs. Or use any HTTP client.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         USE CASES
+         ============================================ -->
+    <section class="tm-section section-shell" id="use-cases" aria-labelledby="use-cases-title">
+      <div class="section-label mono reveal"><span>08</span><span>Use cases</span></div>
+      <div class="work-header reveal">
+        <h2 id="use-cases-title">Where TinyMe earns its place.</h2>
+        <p>Real scenarios where link control matters.</p>
+      </div>
+
+      <div class="use-cases-grid">
+        <article class="use-case-card reveal">
+          <span class="use-case-num mono">01</span>
+          <h3>Product launches</h3>
+          <p>Print 10,000 flyers with tinyme.cc/launch. When the landing page changes for v2, update the destination — not the flyers.</p>
+          <div class="use-case-tags mono"><span>Campaigns</span><span>Print</span><span>QR codes</span></div>
+        </article>
+        <article class="use-case-card reveal">
+          <span class="use-case-num mono">02</span>
+          <h3>Social media teams</h3>
+          <p>One short link per campaign. Route mobile users to the app, desktop users to the landing page, and schedule archive redirects after the campaign ends.</p>
+          <div class="use-case-tags mono"><span>Routing</span><span>Schedule</span><span>Device split</span></div>
+        </article>
+        <article class="use-case-card reveal">
+          <span class="use-case-num mono">03</span>
+          <h3>Client reporting</h3>
+          <p>Give each client a branded short domain. Show them human clicks only — no bot inflation, no fake totals. Export as CSV or JSON.</p>
+          <div class="use-case-tags mono"><span>Custom domains</span><span>Analytics</span><span>Export</span></div>
+        </article>
+        <article class="use-case-card reveal">
+          <span class="use-case-num mono">04</span>
+          <h3>Internal tools</h3>
+          <p>Link to internal docs, dashboards, and runbooks. When the URL changes after a migration, update the destination — bookmarks stay valid.</p>
+          <div class="use-case-tags mono"><span>Internal</span><span>Rollback</span><span>History</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PRICING
+         ============================================ -->
+    <section class="tm-section section-shell" id="pricing" aria-labelledby="pricing-title">
+      <div class="section-label mono reveal"><span>09</span><span>Pricing</span></div>
+      <div class="work-header reveal">
+        <h2 id="pricing-title">Start free. Scale when ready.</h2>
+        <p>No credit card required. Upgrade when you need more.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="pricing-card reveal">
+          <div class="pricing-header">
+            <span class="pricing-tier mono">Free</span>
+            <div class="pricing-price"><span class="price-amount">$0</span><span class="price-period">/month</span></div>
+            <p class="pricing-desc">For individuals and small projects.</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check" aria-hidden="true">✓</span> 50 links</li>
+            <li><span class="check" aria-hidden="true">✓</span> tinyme.cc domain</li>
+            <li><span class="check" aria-hidden="true">✓</span> Basic analytics</li>
+            <li><span class="check" aria-hidden="true">✓</span> QR codes</li>
+            <li><span class="check" aria-hidden="true">✓</span> 30-day analytics retention</li>
+          </ul>
+          <a class="btn btn-ghost" href="#demo" style="width:100%;justify-content:center;">Get started</a>
+        </article>
+
+        <article class="pricing-card pricing-card-featured reveal">
+          <div class="pricing-badge mono">Popular</div>
+          <div class="pricing-header">
+            <span class="pricing-tier mono">Pro</span>
+            <div class="pricing-price"><span class="price-amount">$12</span><span class="price-period">/month</span></div>
+            <p class="pricing-desc">For teams and growing projects.</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check" aria-hidden="true">✓</span> Unlimited links</li>
+            <li><span class="check" aria-hidden="true">✓</span> Custom domains</li>
+            <li><span class="check" aria-hidden="true">✓</span> Advanced analytics</li>
+            <li><span class="check" aria-hidden="true">✓</span> Routing rules</li>
+            <li><span class="check" aria-hidden="true">✓</span> Password protection</li>
+            <li><span class="check" aria-hidden="true">✓</span> 1-year analytics retention</li>
+            <li><span class="check" aria-hidden="true">✓</span> API access</li>
+          </ul>
+          <a class="btn btn-gold" href="#demo" style="width:100%;justify-content:center;">Start free trial</a>
+        </article>
+
+        <article class="pricing-card reveal">
+          <div class="pricing-header">
+            <span class="pricing-tier mono">Team</span>
+            <div class="pricing-price"><span class="price-amount">$39</span><span class="price-period">/month</span></div>
+            <p class="pricing-desc">For agencies and multi-client work.</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check" aria-hidden="true">✓</span> Everything in Pro</li>
+            <li><span class="check" aria-hidden="true">✓</span> 5 team members</li>
+            <li><span class="check" aria-hidden="true">✓</span> Workspaces</li>
+            <li><span class="check" aria-hidden="true">✓</span> Branded exports</li>
+            <li><span class="check" aria-hidden="true">✓</span> Webhooks</li>
+            <li><span class="check" aria-hidden="true">✓</span> Unlimited analytics retention</li>
+            <li><span class="check" aria-hidden="true">✓</span> Priority support</li>
+          </ul>
+          <a class="btn btn-ghost" href="#demo" style="width:100%;justify-content:center;">Contact us</a>
+        </article>
+      </div>
+      <p class="pricing-note mono reveal">Pricing is directional. Final tiers will be confirmed before launch.</p>
+    </section>
+
+    <!-- ============================================
+         PRIVACY
+         ============================================ -->
+    <section class="tm-section privacy-callout section-shell reveal">
+      <div class="privacy-mark" aria-hidden="true">◎</div>
+      <div>
+        <span class="mono" style="color:var(--gold); font-size:9px; letter-spacing:0.06em; text-transform:uppercase;">Privacy position</span>
+        <h2>Analytics should be useful without becoming surveillance.</h2>
+        <p>Use raw request data briefly for routing, abuse prevention, and coarse aggregation. Do not expose raw IP addresses to customers. Label estimated visitors honestly.</p>
+      </div>
+    </section>
+
+    <!-- ============================================
+         CTA
+         ============================================ -->
+    <section class="cta tm-cta section-shell">
+      <p class="eyebrow reveal">TinyMe / Ordani Studios</p>
+      <h2 class="reveal">Publish once. Route responsibly.</h2>
+      <div class="cta-actions reveal">
+        <a class="btn btn-gold" href="#demo">Try the prototype <span aria-hidden="true">↓</span></a>
+        <a class="btn btn-ghost" href="/">Return to Ordani <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="tm-note mono reveal">This page is a front-end product direction prototype. All analytics numbers are sample data. Pricing is directional.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer tinyme-footer section-shell">
+    <div class="footer-top">
+      <div class="tinyme-brand">
+        <img src="/assets/brand/tinyme-gold.webp" alt="" width="30" height="32" loading="lazy" />
+        <strong>TinyMe</strong>
+        <span class="by mono">By Ordani</span>
+      </div>
+      <p class="tagline">Public links you can still control.</p>
+    </div>
+    <nav class="footer-nav mono" aria-label="Footer navigation">
+      <a href="#demo">Demo</a>
+      <a href="#features">Features</a>
+      <a href="#control">Control</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#api">API</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/">Ordani ↗</a>
+    </nav>
+    <div class="footer-bottom mono">
+      <span>Product direction / 2026</span>
+      <span>Sample data labeled</span>
+      <a href="#main">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

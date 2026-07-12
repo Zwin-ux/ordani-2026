@@ -1,0 +1,11 @@
+{
+  "name": "ordani-2026",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ordani Studios 2026 — redesigned homepage and TinyMe product page",
+  "scripts": {
+    "dev": "node scripts/server.mjs",
+    "start": "node scripts/server.mjs",
+    "check": "node scripts/validate.mjs"
+  }
+}
