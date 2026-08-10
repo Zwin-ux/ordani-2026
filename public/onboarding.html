@@ -164,26 +164,15 @@
 
     <div class="ob-sheet" id="ob-sheet" hidden>
       <div class="ob-sheet-panel" role="dialog" aria-labelledby="sheet-title" aria-modal="true">
-        <p class="ob-kicker mono">Connection</p>
-        <h2 id="sheet-title" class="ob-sheet-title">Cannot reach the API</h2>
+        <p class="ob-kicker mono">TINYME</p>
+        <h2 id="sheet-title" class="ob-sheet-title">Not live here yet</h2>
         <p class="ob-body ob-sheet-body" id="sheet-body">
-          Start the TinyMe API, then try again.
+          Link creation needs the live TinyMe service. This page is the product surface — not a server console.
         </p>
-        <form class="ob-form" id="form-connect" autocomplete="off">
-          <label class="op-field">
-            <span class="mono">API base</span>
-            <input type="url" id="ob-api-base" value="http://localhost:8080" required spellcheck="false" />
-          </label>
-          <label class="op-field">
-            <span class="mono">API key</span>
-            <input type="password" id="ob-api-key" placeholder="Your API key" autocomplete="off" spellcheck="false" />
-          </label>
-          <p class="ob-hint mono" id="connect-hint" aria-live="polite"></p>
-          <div class="ob-actions">
-            <button type="submit" class="btn btn-gold ob-cta" id="btn-connect">Retry</button>
-            <button type="button" class="ob-secondary" id="btn-sheet-close">Close</button>
-          </div>
-        </form>
+        <div class="ob-actions">
+          <a class="btn btn-gold ob-cta" href="/tinyme" id="btn-sheet-world">Back to TinyMe</a>
+          <button type="button" class="ob-secondary" id="btn-sheet-close">Close</button>
+        </div>
       </div>
     </div>
 

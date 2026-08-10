@@ -86,13 +86,10 @@
     btnConsole: $("btn-console"),
     btnAnother: $("btn-another"),
     sheet: $("ob-sheet"),
+    sheetTitle: $("sheet-title"),
     sheetBody: $("sheet-body"),
-    formConnect: $("form-connect"),
-    apiBase: $("ob-api-base"),
-    apiKey: $("ob-api-key"),
-    connectHint: $("connect-hint"),
-    btnConnect: $("btn-connect"),
     btnSheetClose: $("btn-sheet-close"),
+    btnSheetWorld: $("btn-sheet-world"),
     footStatus: $("ob-foot-status"),
     worldVideo: document.querySelector("[data-ob-world-video]"),
     worldVideoSource: document.querySelector("[data-ob-world-source]"),
@@ -101,7 +98,6 @@
   let step = 0;
   let intent = "print";
   let transitioning = false;
-  let pendingAfterConnect = null;
   let sheetReturnFocus = null;
 
   /* ---------- Config ---------- */
@@ -115,16 +111,14 @@
   }
 
   function getBearer() {
-    const key = (sessionStorage.getItem(STORAGE_KEY) || els.apiKey?.value || "").trim();
+    const key = (sessionStorage.getItem(STORAGE_KEY) || "").trim();
     if (key) return key;
     return getSessionToken();
   }
 
   function getConfig() {
     return {
-      base: stripTrailingSlash(
-        (sessionStorage.getItem(STORAGE_BASE) || els.apiBase?.value || DEFAULT_BASE).trim()
-      ),
+      base: stripTrailingSlash((sessionStorage.getItem(STORAGE_BASE) || DEFAULT_BASE).trim()),
       key: getBearer(),
     };
   }
@@ -155,22 +149,7 @@
       key = DEFAULT_DEV_KEY;
       sessionStorage.setItem(STORAGE_KEY, key);
     }
-    if (els.apiBase) els.apiBase.value = base;
-    if (els.apiKey) els.apiKey.value = key;
     sessionStorage.setItem(STORAGE_BASE, base);
-    return { base, key };
-  }
-
-  function saveConfig() {
-    const base = stripTrailingSlash((els.apiBase?.value || DEFAULT_BASE).trim());
-    let key = (els.apiKey?.value || "").trim();
-    if (!key && isLocalBase(base) && !getSessionToken()) key = DEFAULT_DEV_KEY;
-    else if (!isLocalBase(base) && key === DEFAULT_DEV_KEY) key = "";
-    sessionStorage.setItem(STORAGE_BASE, base);
-    if (key) sessionStorage.setItem(STORAGE_KEY, key);
-    else sessionStorage.removeItem(STORAGE_KEY);
-    if (els.apiBase) els.apiBase.value = base;
-    if (els.apiKey) els.apiKey.value = key;
     return { base, key };
   }
 
@@ -210,7 +189,7 @@
         body: body !== undefined ? JSON.stringify(body) : undefined,
       });
     } catch {
-      throw new ApiError(0, "API unreachable. Is it running on this machine?");
+      throw new ApiError(0, "offline");
     }
 
     if (res.status === 204) return null;
@@ -248,9 +227,9 @@
         headers: { Accept: "application/json" },
       });
     } catch {
-      throw new ApiError(0, "API unreachable. Start the TinyMe API, then retry.");
+      throw new ApiError(0, "offline");
     }
-    if (!res.ok) throw new ApiError(res.status, `Health check failed (${res.status}).`);
+    if (!res.ok) throw new ApiError(res.status, "offline");
     return "ok";
   }
 
@@ -397,20 +376,40 @@
     updatePreview();
   }
 
-  function openSheet(message, after) {
-    pendingAfterConnect = after || null;
+  /** Product-facing offline notice — never shows API base / key console. */
+  function showNotLive(message) {
+    try {
+      if (window.TinyMeDomainLock?.showHalt) {
+        window.TinyMeDomainLock.showHalt({
+          message:
+            message ||
+            "Short links need live TinyMe infrastructure. This surface is product-only — not a server console.",
+        });
+        return;
+      }
+    } catch {
+      /* fall through to soft sheet */
+    }
+    if (!els.sheet) {
+      setHint(els.linkHint, "Not live here yet.", "err");
+      return;
+    }
     sheetReturnFocus = document.activeElement;
-    if (els.sheetBody && message) els.sheetBody.textContent = message;
+    if (els.sheetTitle) els.sheetTitle.textContent = "Not live here yet";
+    if (els.sheetBody) {
+      els.sheetBody.textContent =
+        message ||
+        "Link creation needs the live TinyMe service. This page is the product surface — not a server console.";
+    }
     els.sheet.hidden = false;
     document.body.classList.add("ob-sheet-open");
-    setHint(els.connectHint, "");
-    window.setTimeout(() => (els.apiKey?.value ? els.apiKey : els.apiBase)?.focus(), 50);
+    window.setTimeout(() => els.btnSheetClose?.focus(), 50);
   }
 
   function closeSheet() {
+    if (!els.sheet) return;
     els.sheet.hidden = true;
     document.body.classList.remove("ob-sheet-open");
-    pendingAfterConnect = null;
     if (sheetReturnFocus?.focus) sheetReturnFocus.focus();
     sheetReturnFocus = null;
   }
@@ -522,9 +521,9 @@
 
     try {
       await ensureReady();
-    } catch (err) {
+    } catch {
       setBusy(els.btnCreate, false, "Create link");
-      openSheet(err.message || "Cannot reach API.", createLink);
+      showNotLive();
       return;
     }
 
@@ -591,22 +590,16 @@
         /* ignore */
       }
     } catch (err) {
-      if (err.status === 401 || err.status === 403 || err.status === 0) {
-        try {
-          const lock = window.TinyMeDomainLock;
-          if (lock && lock.isStaticDemoHost && lock.isStaticDemoHost()) {
-            lock.showHalt({
-              message:
-                "No live TinyMe API on this host. Static demo only — buy the domain and lock TinyMe for Ordani. Made by the 🐐.",
-            });
-          } else {
-            openSheet(err.message, createLink);
-          }
-        } catch {
-          openSheet(err.message, createLink);
-        }
+      // Never surface API base / key / "cannot reach" console chrome
+      if (err.status === 401 || err.status === 403 || err.status === 0 || err.message === "offline") {
+        showNotLive();
       } else {
-        setHint(els.linkHint, err.message || String(err), "err");
+        const msg = err.message || "";
+        if (/unreachable|API|authorization|localhost|Bearer/i.test(msg)) {
+          showNotLive();
+        } else {
+          setHint(els.linkHint, msg || "Could not create that link.", "err");
+        }
       }
     } finally {
       setBusy(els.btnCreate, false, "Create link");
@@ -654,32 +647,8 @@
     goTo(1);
   }
 
-  async function onConnect(ev) {
-    ev.preventDefault();
-    setHint(els.connectHint, "");
-    saveConfig();
-    setBusy(els.btnConnect, true);
-    els.btnConnect.textContent = "Checking…";
-    try {
-      await ensureReady();
-      setHint(els.connectHint, "Connected.", "ok");
-      const after = pendingAfterConnect;
-      closeSheet();
-      if (typeof after === "function") after();
-    } catch (err) {
-      setHint(els.connectHint, err.message || String(err), "err");
-    } finally {
-      setBusy(els.btnConnect, false, "Retry");
-    }
-  }
-
   function bind() {
-    els.btnStart.addEventListener("click", async () => {
-      try {
-        await ensureReady();
-      } catch {
-        /* sheet on create */
-      }
+    els.btnStart.addEventListener("click", () => {
       applyIntent(intent);
       goTo(1);
     });
@@ -730,13 +699,12 @@
     els.btnAnother.addEventListener("click", onAnother);
     els.btnConsole?.addEventListener("click", () => markDone());
 
-    els.formConnect.addEventListener("submit", onConnect);
-    els.btnSheetClose.addEventListener("click", () => closeSheet());
-    els.sheet.addEventListener("click", (ev) => {
+    els.btnSheetClose?.addEventListener("click", () => closeSheet());
+    els.sheet?.addEventListener("click", (ev) => {
       if (ev.target === els.sheet) closeSheet();
     });
     document.addEventListener("keydown", (ev) => {
-      if (ev.key === "Escape" && !els.sheet.hidden) closeSheet();
+      if (ev.key === "Escape" && els.sheet && !els.sheet.hidden) closeSheet();
     });
 
     ["input", "change"].forEach((evt) => {
@@ -773,6 +741,7 @@
       });
     }
 
+    // Quiet background check only — never open API console UI
     ensureReady().catch(() => {});
 
     try {
