@@ -81,12 +81,17 @@ await check("Homepage presents the TFR Ch4 project accurately", () => {
   const requiredTfrCopy = [
     "TFR Ch4 Website",
     "Freedom Riders of Indiana Chapter 4",
-    "Event calendar",
-    "Member directory",
-    "Secure document portal",
     "https://tfrch4.org/",
   ];
   if (!requiredTfrCopy.every((copy) => indexHtml.includes(copy))) return false;
+  const removedTfrTags = [
+    "Active",
+    "Next.js website",
+    "Event calendar",
+    "Member directory",
+    "Secure document portal",
+  ];
+  if (removedTfrTags.some((copy) => indexHtml.includes(copy))) return false;
   if (/GTA\s*(?:5|V|6|VI)|Grand Theft Auto/i.test(indexHtml)) return false;
   return true;
 });

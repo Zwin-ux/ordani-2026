@@ -681,13 +681,6 @@ ul, ol { list-style: none; }
 .project-copy .text-link:hover {
   color: var(--paper);
 }
-.project-tags {
-  display: flex; flex-wrap: wrap; gap: 10px 20px;
-  margin-top: 28px; color: var(--muted);
-  font-family: var(--font-mono); font-size: 9px;
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-.project-tags-meta { margin-top: 0; }
 .project-arrow {
   font-size: 24px; color: var(--orange);
   transition: transform .35s var(--ease);
