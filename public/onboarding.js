@@ -433,7 +433,9 @@
 
     if (push) {
       try {
-        history.replaceState({ obStep: step }, "", `#${step}`);
+        // A Pages build injects a <base> tag. A bare hash would resolve against
+        // that base and rewrite /onboarding/ to the site root on project Pages.
+        history.replaceState({ obStep: step }, "", `${location.pathname}#${step}`);
       } catch {
         /* ignore */
       }
@@ -487,6 +489,13 @@
     }
     els.dest.value = destination;
     els.dest.removeAttribute("aria-invalid");
+
+    // GitHub Pages is intentionally presentation-only. Avoid even attempting
+    // the local API there so the demo interrupt is immediate and console-clean.
+    if (window.__STATIC_DEMO__) {
+      showNotLive();
+      return;
+    }
 
     setBusy(els.btnCreate, true);
     els.btnCreate.dataset.busyLabel = "Creating…";
