@@ -32,6 +32,15 @@
     {
       "title": "TinyMe mark",
       "src": "/assets/brand/tinyme-gold.webp"
+    },
+    {
+      "title": "Product demo reel",
+      "src": "/assets/demo/tinyme-demo.mp4",
+      "type": "video"
+    },
+    {
+      "title": "Product demo GIF",
+      "src": "/assets/demo/tinyme-demo.gif"
     }
   ]
 }
