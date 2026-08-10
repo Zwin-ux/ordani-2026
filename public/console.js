@@ -240,6 +240,17 @@
       els.errorBanner.textContent = "";
       return;
     }
+    // Network / offline → red game interrupt, not API console text
+    if (/network|unreachable|offline|cors|failed to fetch|0\b/i.test(String(message))) {
+      if (window.TinyMeDemoError?.show) {
+        window.TinyMeDemoError.show({
+          title: "ERROR",
+          line: "THIS IS A DEMO TO SHOW AURA",
+        });
+        els.errorBanner.hidden = true;
+        return;
+      }
+    }
     els.errorBanner.hidden = false;
     els.errorBanner.textContent = message;
   }
@@ -710,17 +721,13 @@
         /* ignore */
       }
     } catch (err) {
-      setMsg(els.createMsg, err.message, "err");
-      showError(err.message);
-      try {
-        if (window.TinyMeDomainLock?.isStaticDemoHost?.()) {
-          window.TinyMeDomainLock.showHalt({
-            message:
-              "No live TinyMe API on this host. Static demo only — buy the domain and lock TinyMe for Ordani. Made by the 🐐.",
-          });
-        }
-      } catch {
-        /* ignore */
+      setMsg(els.createMsg, "", "err");
+      showError(err.message || "offline");
+      if (window.TinyMeDemoError?.show) {
+        window.TinyMeDemoError.show({
+          title: "ERROR",
+          line: "THIS IS A DEMO TO SHOW AURA",
+        });
       }
     } finally {
       setBusy(els.createBtn, false, "Create link");
