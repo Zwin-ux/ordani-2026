@@ -5,8 +5,8 @@
 (() => {
   "use strict";
 
-  const TITLE = "ERROR";
-  const LINE = "THIS IS A DEMO TO SHOW AURA";
+  const LINE =
+    "THIS WAS A DEMO TO SHOW AURA AND I DONT WANT TO WASTE MY RAILWAY BACKEND SPACE";
 
   function ensureDom() {
     let root = document.getElementById("tm-demo-error");
@@ -18,11 +18,9 @@
     root.hidden = true;
     root.setAttribute("role", "alertdialog");
     root.setAttribute("aria-modal", "true");
-    root.setAttribute("aria-labelledby", "tm-demo-error-title");
+    root.setAttribute("aria-labelledby", "tm-demo-error-line");
     root.innerHTML = `
       <div class="tm-demo-error-frame">
-        <p class="tm-demo-error-code mono" aria-hidden="true">// FATAL_INTERRUPT</p>
-        <h2 id="tm-demo-error-title" class="tm-demo-error-title mono">${TITLE}</h2>
         <p class="tm-demo-error-line mono" id="tm-demo-error-line">${LINE}</p>
         <button type="button" class="tm-demo-error-ok mono" id="tm-demo-error-ok">OK</button>
       </div>
@@ -49,8 +47,6 @@
     const root = ensureDom();
     const line = root.querySelector("#tm-demo-error-line");
     if (line) line.textContent = opts.line || LINE;
-    const title = root.querySelector("#tm-demo-error-title");
-    if (title && opts.title) title.textContent = opts.title;
     root.hidden = false;
     document.body.classList.add("tm-demo-error-open");
     window.setTimeout(() => root.querySelector("#tm-demo-error-ok")?.focus(), 40);

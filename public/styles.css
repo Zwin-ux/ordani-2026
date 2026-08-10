@@ -3988,8 +3988,8 @@ body.tm-demo-error-open {
   to { opacity: 1; }
 }
 .tm-demo-error-frame {
-  width: min(520px, 100%);
-  padding: 40px 28px 32px;
+  width: min(560px, 100%);
+  padding: 36px 28px 28px;
   text-align: center;
   border: 3px solid #ff2a2a;
   background: #120404;
@@ -4006,31 +4006,15 @@ body.tm-demo-error-open {
   60% { transform: translate3d(-4px, 0, 0); }
   80% { transform: translate3d(4px, 0, 0); }
 }
-.tm-demo-error-code {
-  margin: 0 0 14px;
-  color: #ff6b6b;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  animation: tm-demo-error-blink 1s steps(2, end) infinite;
-}
-.tm-demo-error-title {
-  margin: 0 0 18px;
-  color: #ff1f1f;
-  font-size: clamp(48px, 12vw, 72px);
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  text-shadow: 0 0 28px rgba(255, 40, 40, 0.6);
-  animation: tm-demo-error-blink 0.85s steps(2, end) infinite;
-}
 .tm-demo-error-line {
   margin: 0 0 28px;
-  color: #ffb4b4;
-  font-size: clamp(13px, 3.2vw, 16px);
-  letter-spacing: 0.14em;
+  color: #ff4d4d;
+  font-size: clamp(15px, 3.6vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  line-height: 1.55;
+  line-height: 1.45;
+  text-shadow: 0 0 20px rgba(255, 40, 40, 0.45);
 }
 .tm-demo-error-ok {
   appearance: none;

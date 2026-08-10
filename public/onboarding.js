@@ -373,14 +373,14 @@
   /** Red game-style interrupt — never an API console. */
   function showNotLive() {
     if (window.TinyMeDemoError?.show) {
-      window.TinyMeDemoError.show({
-        title: "ERROR",
-        line: "THIS IS A DEMO TO SHOW AURA",
-      });
+      window.TinyMeDemoError.show();
       return;
     }
-    // Fallback if demo-error.js missing
-    setHint(els.linkHint, "THIS IS A DEMO TO SHOW AURA", "err");
+    setHint(
+      els.linkHint,
+      "THIS WAS A DEMO TO SHOW AURA AND I DONT WANT TO WASTE MY RAILWAY BACKEND SPACE",
+      "err"
+    );
   }
 
   function closeSheet() {
