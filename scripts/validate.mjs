@@ -48,7 +48,7 @@ const assets = [
   "assets/brand/tinyme-gold.webp",
   "assets/brand/ordani-single-orange.png",
   "assets/projects/datapad.webp",
-  "assets/projects/tfrch4-site.png",
+  "assets/projects/tfrch4-patriot.png",
   "assets/team/azara.webp",
   "assets/team/tundra.webp",
   "assets/team/abel.webp",
