@@ -31,6 +31,7 @@ const CLEAN_ROUTES = {
   console: "console.html",
   onboarding: "onboarding.html",
   setup: "onboarding.html",
+  showcase: "showcase.html",
 };
 
 const TEXT_EXTS = new Set([".html", ".css", ".js", ".json", ".svg", ".xml", ".txt", ".md", ".webmanifest"]);
@@ -49,7 +50,7 @@ function rewriteText(content, filePath) {
     out = out.replace(/url\(\s*(['"]?)\/(?!\/)/g, `url($1${BASE}/`);
     // JS / CSS string literals for site roots
     out = out.replace(
-      /(["'`])\/(assets|styles\.css|domain-lock\.js|console\.js|onboarding\.js|app\.js|world\.js|data\/)/g,
+      /(["'`])\/(assets|styles\.css|domain-lock\.js|demo-error\.js|console\.js|onboarding\.js|app\.js|world\.js|showcase\.js|data\/)/g,
       `$1${BASE}/$2`
     );
     // Clean route strings in JS/HTML (navigation targets)
