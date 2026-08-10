@@ -33,6 +33,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Validate public site
+        run: npm run check
+
       - name: Build dist
         env:
           # Project site: https://zwin-ux.github.io/ordani-2026/

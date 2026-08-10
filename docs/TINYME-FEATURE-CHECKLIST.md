@@ -155,7 +155,7 @@ Smokes used: `scripts/smoke-tinyme.ps1`, `scripts/smoke-onboarding.ps1`, extende
 
 | # | Feature | Status |
 |---|---------|--------|
-| I1 | Welcome → create → done steps | **PASS** (smoke structure) |
+| I1 | Welcome → intent → create → done steps | **PASS** (smoke structure) |
 | I2 | Intent chips (print / QR / social / swap) | **PASS** UX |
 | I3 | Create first link live | **PASS** smoke create 201 |
 | I4 | Auto-copy short address | **PASS** code path |

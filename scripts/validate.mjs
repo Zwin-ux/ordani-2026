@@ -24,7 +24,17 @@ const check = async (label, fn) => {
 console.log("\n  Ordani 2026 — Validation\n");
 
 // Check required files exist
-const required = ["index.html", "tinyme.html", "styles.css", "app.js", "404.html"];
+const required = [
+  "index.html",
+  "tinyme.html",
+  "world.html",
+  "world.js",
+  "styles.css",
+  "app.js",
+  "404.html",
+  "console.html",
+  "console.js",
+];
 for (const file of required) {
   await check(`File exists: ${file}`, async () => {
     await readFile(join(PUBLIC, file));
@@ -36,10 +46,15 @@ for (const file of required) {
 const assets = [
   "assets/brand/ordani-full-white.webp",
   "assets/brand/tinyme-gold.webp",
+  "assets/brand/ordani-single-orange.png",
   "assets/projects/datapad.webp",
+  "assets/projects/tfrch4-site.png",
   "assets/team/azara.webp",
   "assets/team/tundra.webp",
   "assets/team/abel.webp",
+  "assets/world/ch-00/plate.webp",
+  "assets/hero/space-poster.webp",
+  "assets/hero/space-soft.mp4",
 ];
 for (const asset of assets) {
   await check(`Asset: ${asset}`, async () => {
@@ -54,13 +69,25 @@ await check("No fake metrics in homepage", () => {
   if (/enterprise-grade|99\.9% uptime|trusted by/i.test(indexHtml)) return "warn";
   return true;
 });
-await check("Sample data labeled in homepage", () => {
-  const labels = (indexHtml.match(/sample data/gi) || []).length;
-  if (labels < 1) return "warn";
+await check("Homepage has no unlabeled sample dashboard", () => {
+  if (/sample dashboard|sample analytics|sample data/i.test(indexHtml) && !/sample data/i.test(indexHtml)) return false;
   return true;
 });
 await check("Ordani Studios naming consistent", () => {
   if (/ordani studio[^s]/i.test(indexHtml)) return false;
+  return true;
+});
+await check("Homepage presents the TFR Ch4 project accurately", () => {
+  const requiredTfrCopy = [
+    "TFR Ch4 Website",
+    "Freedom Riders of Indiana Chapter 4",
+    "Event calendar",
+    "Member directory",
+    "Secure document portal",
+    "https://tfrch4.org/",
+  ];
+  if (!requiredTfrCopy.every((copy) => indexHtml.includes(copy))) return false;
+  if (/GTA\s*(?:5|V|6|VI)|Grand Theft Auto/i.test(indexHtml)) return false;
   return true;
 });
 
@@ -70,9 +97,8 @@ await check("No fake metrics in TinyMe", () => {
   if (/enterprise-grade|trusted by/i.test(tinymeHtml)) return "warn";
   return true;
 });
-await check("Sample data labeled in TinyMe", () => {
-  const labels = (tinymeHtml.match(/sample data/gi) || []).length;
-  if (labels < 2) return "warn";
+await check("TinyMe film has no sample dashboard", () => {
+  if (/sample dashboard|sample analytics/i.test(tinymeHtml)) return false;
   return true;
 });
 await check("Honest product states", () => {
@@ -94,6 +120,29 @@ await check("CSS has mobile breakpoints", () => {
   if (!css.includes("max-width: 900px") || !css.includes("max-width: 600px")) return false;
   return true;
 });
+await check("CSS has operator console styles", () => {
+  if (!css.includes("data-page=\"console\"") && !css.includes("body[data-page=\"console\"]")) return false;
+  if (!css.includes(".op-config") || !css.includes(".op-table")) return false;
+  return true;
+});
+
+// Operator console: live API only, honest labels
+const consoleHtml = await readFile(join(PUBLIC, "console.html"), "utf-8");
+const consoleJs = await readFile(join(PUBLIC, "console.js"), "utf-8");
+await check("Console labeled private beta / live API", () => {
+  if (!/Private beta operator console/i.test(consoleHtml)) return false;
+  if (!/live API/i.test(consoleHtml)) return false;
+  return true;
+});
+await check("Console talks to live API endpoints", () => {
+  if (!consoleJs.includes("/api/links") || !consoleJs.includes("/health")) return false;
+  if (!consoleJs.includes("Authorization") || !consoleJs.includes("sessionStorage")) return false;
+  return true;
+});
+await check("Console has no fake metrics", () => {
+  if (/trusted by|99\.9%|10k users|enterprise-grade/i.test(consoleHtml + consoleJs)) return false;
+  return true;
+});
 
 // Check JS has accessibility features
 const js = await readFile(join(PUBLIC, "app.js"), "utf-8");
@@ -102,7 +151,7 @@ await check("JS respects reduced-motion", () => {
   return true;
 });
 await check("JS has skip-link or keyboard support", () => {
-  if (!js.includes("focus") && !js.includes("keyboard")) return "warn";
+  if (!indexHtml.includes("skip-link") || !js.includes("aria-expanded")) return false;
   return true;
 });
 

@@ -1,6 +1,6 @@
 /**
  * TinyMe onboarding — production path
- * Welcome → Create → Live address (auto-copy)
+ * Welcome → Intent → Create → Live address (auto-copy)
  */
 (() => {
   "use strict";
@@ -55,14 +55,15 @@
 
   const $ = (id) => document.getElementById(id);
 
-  // 0 welcome · 1 create · 2 done
-  const steps = [$("step-welcome"), $("step-link"), $("step-done")];
+  // 0 welcome · 1 intent · 2 create · 3 done
+  const steps = [$("step-welcome"), $("step-intent"), $("step-link"), $("step-done")];
 
   const els = {
     back: $("ob-back"),
     progress: $("ob-progress"),
     dots: Array.from(document.querySelectorAll(".ob-dot")),
     btnStart: $("btn-start"),
+    btnIntent: $("btn-intent"),
     intentChips: $("intent-chips"),
     formLink: $("form-link"),
     dest: $("ob-dest"),
@@ -300,8 +301,8 @@
     if (!video) return;
 
     const source = CHAPTER_VIDEO[id];
-    // Play soft loop on create step (1) and done (2) for presence — not on welcome
-    const allowed = Boolean(source) && !reduceMotion() && (step === 1 || step === 2);
+    // Play the selected chapter after welcome; keep the first screen still and quiet.
+    const allowed = Boolean(source) && !reduceMotion() && step >= 1;
 
     try {
       video.pause();
@@ -418,8 +419,9 @@
 
     window.setTimeout(() => {
       let focusable = null;
-      if (step === 1) focusable = els.dest;
-      else if (step === 2) focusable = els.btnCopy;
+      if (step === 1) focusable = els.intentChips?.querySelector(".ob-chip.is-selected");
+      else if (step === 2) focusable = els.dest;
+      else if (step === 3) focusable = els.btnCopy;
       else focusable = nextEl.querySelector("h1, button");
       if (focusable?.focus) {
         try {
@@ -447,12 +449,12 @@
     if (els.progress) {
       els.progress.hidden = step === 0;
       els.progress.setAttribute("aria-valuenow", String(Math.max(1, step)));
-      els.progress.setAttribute("aria-valuemax", "2");
+      els.progress.setAttribute("aria-valuemax", "3");
     }
-    els.dots.forEach((dot, i) => {
-      // 3 dots for welcome/create/done but welcome hides bar
-      dot.classList.toggle("is-current", i === step);
-      dot.classList.toggle("is-done", i < step);
+    els.dots.forEach((dot) => {
+      const dotStep = Number(dot.dataset.step);
+      dot.classList.toggle("is-current", dotStep === step);
+      dot.classList.toggle("is-done", dotStep < step);
     });
   }
 
@@ -550,7 +552,7 @@
       }
 
       markDone();
-      goTo(2);
+      goTo(3);
       playSuccessReveal();
       window.setTimeout(() => onCopy({ silent: true }), reduceMotion() ? 80 : 480);
 
@@ -618,7 +620,7 @@
     if (els.dest) els.dest.value = "";
     if (els.slug) els.slug.value = "";
     updatePreview();
-    goTo(1);
+    goTo(2);
   }
 
   function bind() {
@@ -626,6 +628,8 @@
       applyIntent(intent);
       goTo(1);
     });
+
+    els.btnIntent?.addEventListener("click", () => goTo(2));
 
     if (els.intentChips) {
       els.intentChips.addEventListener("click", (ev) => {
@@ -661,11 +665,11 @@
 
     els.back.addEventListener("click", () => {
       if (step <= 0) return;
-      if (step === 2) {
-        goTo(1);
+      if (step === 3) {
+        goTo(2);
         return;
       }
-      goTo(0);
+      goTo(step - 1);
     });
 
     els.formLink.addEventListener("submit", onCreate);
@@ -714,7 +718,7 @@
 
     try {
       const raw = sessionStorage.getItem(STORAGE_FIRST);
-      if (raw && (location.hash === "#2" || location.hash === "#step-2" || location.hash === "#3")) {
+      if (raw && (location.hash === "#3" || location.hash === "#step-3")) {
         const parsed = JSON.parse(raw);
         if (parsed?.short) {
           if (parsed.intent) applyIntent(parsed.intent);
@@ -722,7 +726,7 @@
           els.successTo.textContent = parsed.dest
             ? `Opens ${hostFromUrl(parsed.dest) || parsed.dest}`
             : "";
-          goTo(2, { push: false });
+          goTo(3, { push: false });
           playSuccessReveal();
         }
       }

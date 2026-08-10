@@ -55,7 +55,7 @@ function rewriteText(content, filePath) {
     );
     // Clean route strings in JS/HTML (navigation targets)
     out = out.replace(
-      /(["'`])\/(tinyme|world|experience|console|onboarding|setup)(\/|\?|#|["'`])/g,
+      /(["'`])\/(tinyme|world|experience|console|onboarding|setup|showcase)(\/|\?|#|["'`])/g,
       `$1${BASE}/$2$3`
     );
     // window.location / replace paths used by console gate
@@ -146,16 +146,6 @@ async function main() {
   // Root index already present. Write a nojekyll so asset paths aren't mangled.
   await writeFile(join(DIST, ".nojekyll"), "", "utf8");
 
-  // Showcase landing pointer for demo uploads
-  const showcaseDir = join(DIST, "showcase");
-  await mkdir(showcaseDir, { recursive: true });
-  const showcaseHtml = rewriteText(
-    await readFile(join(PUBLIC, "showcase.html"), "utf8").catch(() => null) ||
-      `<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Showcase</title><link rel="stylesheet" href="/styles.css"/></head><body data-page="showcase"><main class="section-shell" style="padding:48px 20px"><h1>Showcase</h1><p class="mono">Drop screenshots &amp; gifs in public/assets/showcase/</p><p><a href="/">Studio</a> · <a href="/tinyme">TinyMe</a> · <a href="/onboarding">Onboarding</a></p></main></body></html>`,
-    "showcase.html"
-  );
-  await writeFile(join(showcaseDir, "index.html"), showcaseHtml, "utf8");
-
   // Manifest for operators
   await writeFile(
     join(DIST, "pages-build.json"),
@@ -163,7 +153,7 @@ async function main() {
       {
         base: BASE || "/",
         builtAt: new Date().toISOString(),
-        routes: ["/", ...Object.keys(CLEAN_ROUTES).map((r) => `/${r}`), "/showcase"],
+        routes: ["/", ...Object.keys(CLEAN_ROUTES).map((r) => `/${r}`)],
         note: "Static demo only. Short-link API is not on GitHub Pages.",
       },
       null,
