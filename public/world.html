@@ -3,36 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Scroll World lives on TinyMe. Redirecting." />
-  <meta http-equiv="refresh" content="0;url=/tinyme" />
-  <link rel="canonical" href="/tinyme" />
-  <title>Scroll World → TinyMe</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="0;url=/" />
+  <link rel="canonical" href="/" />
+  <title>Redirecting…</title>
   <script>
-    // Project Pages base-aware redirect
     (function () {
-      var base = (window.__PAGES_BASE__ || "").replace(/\/+$/, "");
-      var path = base + "/tinyme";
-      // If base not injected yet (raw world.html on GH Pages path)
-      if (!base && /\/ordani-2026\//.test(location.pathname)) {
-        path = "/ordani-2026/tinyme";
-      }
-      location.replace(path + (location.search || "") + (location.hash || ""));
+      var base = "";
+      if (/\/ordani-2026(\/|$)/.test(location.pathname)) base = "/ordani-2026";
+      location.replace(base + "/" + (location.search || ""));
     })();
   </script>
 </head>
-<body data-page="world">
-  <main class="section-shell" style="padding: 48px 20px; max-width: 40ch;">
-    <p class="mono" style="color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">
-      Scroll world moved
-    </p>
-    <h1 style="font-family: var(--font-display); letter-spacing: -0.03em;">TinyMe is the world.</h1>
-    <p style="color: var(--paper-soft); line-height: 1.5;">
-      The product scroll experience is now <a href="/tinyme">/tinyme</a>.
-    </p>
-    <p style="margin-top: 20px;">
-      <a class="btn btn-gold" href="/tinyme">Open TinyMe <span aria-hidden="true">↗</span></a>
-    </p>
-  </main>
+<body>
+  <p><a href="/">Continue to Ordani</a></p>
 </body>
 </html>
