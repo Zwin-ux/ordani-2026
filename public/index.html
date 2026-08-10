@@ -184,7 +184,17 @@
           </figure>
           <figure class="team-card">
             <div class="team-media">
-              <img src="/assets/team/abel-hq.webp" alt="Abel" width="360" height="480" loading="lazy" />
+              <img
+                class="team-photo-abel"
+                src="/assets/team/abel-hq.webp"
+                srcset="/assets/team/abel.webp 480w, /assets/team/abel-hq.webp 720w"
+                sizes="(max-width: 640px) 90vw, 280px"
+                alt="Abel"
+                width="720"
+                height="720"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <figcaption>
               <strong>Abel</strong>
