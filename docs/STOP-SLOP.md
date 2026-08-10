@@ -32,8 +32,14 @@
 
 ## TinyMe scroll rules (session lock)
 
-- **One film only** (`/assets/world/film/tinyme-world.mp4`). Scroll scrubs it. No 6-plate carousel.
-- **3 beats max.** No VOID / SIGNAL / EVENT / 05–06 chrome.
-- **Banned ad copy:** signal, know what clicked, people vs bots, route each click, feature-tag lists, custom domains claims, dual CTAs.
-- **Allowed spine:** Little link. Big features. → Print it once. → Swap the destination. → **Make a link.**
-- End screen: single gold CTA only.
+**Design thinking (product ad surface):**
+
+| Job | Feeling | Constraint | Decision |
+|-----|---------|------------|----------|
+| Sell the idea of a durable short link | Quiet, gold, controlled | Not Bitly SaaS; no multi-chapter lesson | **One Higgsfield world film** |
+
+- **One film only:** `public/assets/world/film/tinyme-world.mp4` (Higgsfield i2v from ch-00 plate).
+- **Scroll = scrub.** No 5–6 plates. No chapter ticks. No VOID / SIGNAL / 05–06.
+- **Fixed copy on film:** Little link. Big features. · Short URL. Swap destinations.
+- **One CTA:** Make a link.
+- **Banned:** signal language, bots, feature tags, dual CTAs, feature grids, multi-video carousel.
