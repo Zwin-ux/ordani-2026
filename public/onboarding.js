@@ -708,7 +708,9 @@
     }
 
     // Quiet background check only — never open API console UI
-    ensureReady().catch(() => {});
+    if (!window.__STATIC_DEMO__) {
+      ensureReady().catch(() => {});
+    }
 
     try {
       const raw = sessionStorage.getItem(STORAGE_FIRST);
