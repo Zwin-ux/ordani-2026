@@ -85,11 +85,6 @@
     btnCopy: $("btn-copy"),
     btnConsole: $("btn-console"),
     btnAnother: $("btn-another"),
-    sheet: $("ob-sheet"),
-    sheetTitle: $("sheet-title"),
-    sheetBody: $("sheet-body"),
-    btnSheetClose: $("btn-sheet-close"),
-    btnSheetWorld: $("btn-sheet-world"),
     footStatus: $("ob-foot-status"),
     worldVideo: document.querySelector("[data-ob-world-video]"),
     worldVideoSource: document.querySelector("[data-ob-world-source]"),
@@ -98,7 +93,6 @@
   let step = 0;
   let intent = "print";
   let transitioning = false;
-  let sheetReturnFocus = null;
 
   /* ---------- Config ---------- */
 
@@ -376,42 +370,21 @@
     updatePreview();
   }
 
-  /** Product-facing offline notice — never shows API base / key console. */
-  function showNotLive(message) {
-    try {
-      if (window.TinyMeDomainLock?.showHalt) {
-        window.TinyMeDomainLock.showHalt({
-          message:
-            message ||
-            "Short links need live TinyMe infrastructure. This surface is product-only — not a server console.",
-        });
-        return;
-      }
-    } catch {
-      /* fall through to soft sheet */
-    }
-    if (!els.sheet) {
-      setHint(els.linkHint, "Not live here yet.", "err");
+  /** Red game-style interrupt — never an API console. */
+  function showNotLive() {
+    if (window.TinyMeDemoError?.show) {
+      window.TinyMeDemoError.show({
+        title: "ERROR",
+        line: "THIS IS A DEMO TO SHOW AURA",
+      });
       return;
     }
-    sheetReturnFocus = document.activeElement;
-    if (els.sheetTitle) els.sheetTitle.textContent = "Not live here yet";
-    if (els.sheetBody) {
-      els.sheetBody.textContent =
-        message ||
-        "Link creation needs the live TinyMe service. This page is the product surface — not a server console.";
-    }
-    els.sheet.hidden = false;
-    document.body.classList.add("ob-sheet-open");
-    window.setTimeout(() => els.btnSheetClose?.focus(), 50);
+    // Fallback if demo-error.js missing
+    setHint(els.linkHint, "THIS IS A DEMO TO SHOW AURA", "err");
   }
 
   function closeSheet() {
-    if (!els.sheet) return;
-    els.sheet.hidden = true;
-    document.body.classList.remove("ob-sheet-open");
-    if (sheetReturnFocus?.focus) sheetReturnFocus.focus();
-    sheetReturnFocus = null;
+    if (window.TinyMeDemoError?.close) window.TinyMeDemoError.close();
   }
 
   function goTo(next, { push = true } = {}) {
@@ -572,19 +545,11 @@
       playSuccessReveal();
       window.setTimeout(() => onCopy({ silent: true }), reduceMotion() ? 80 : 480);
 
-      // Print-safe domain gate — arcade STOP until short domain is bought + locked
+      // Demo / unlocked domain → red game error (aura), not API console
       try {
         const lock = window.TinyMeDomainLock;
-        if (lock) {
-          if (lock.isStaticDemoHost && lock.isStaticDemoHost()) {
-            lock.showHalt({
-              domain: link.domain,
-              message:
-                "GitHub Pages is marketing only. Short links need a real domain + TinyMe API. Buy it. Lock it. Made by the 🐐.",
-            });
-          } else {
-            lock.maybeHaltAfterCreate(link);
-          }
+        if (lock?.isStaticDemoHost?.() || lock?.needsHalt?.(link.domain)) {
+          showNotLive();
         }
       } catch {
         /* ignore */
@@ -698,14 +663,6 @@
     els.btnCopy.addEventListener("click", () => onCopy());
     els.btnAnother.addEventListener("click", onAnother);
     els.btnConsole?.addEventListener("click", () => markDone());
-
-    els.btnSheetClose?.addEventListener("click", () => closeSheet());
-    els.sheet?.addEventListener("click", (ev) => {
-      if (ev.target === els.sheet) closeSheet();
-    });
-    document.addEventListener("keydown", (ev) => {
-      if (ev.key === "Escape" && els.sheet && !els.sheet.hidden) closeSheet();
-    });
 
     ["input", "change"].forEach((evt) => {
       els.dest?.addEventListener(evt, updatePreview);

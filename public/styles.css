@@ -3959,7 +3959,101 @@ body.tm-halt-open { overflow: hidden; }
   text-transform: uppercase;
 }
 
-/* Recovery sheet */
+/* Red video-game error interrupt (demo / offline) */
+body.tm-demo-error-open {
+  overflow: hidden;
+}
+.tm-demo-error {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 0, 40, 0.045) 0 2px,
+      transparent 2px 4px
+    ),
+    rgba(8, 0, 0, 0.9);
+  animation: tm-demo-error-in 0.18s steps(2, end) both;
+}
+.tm-demo-error[hidden] {
+  display: none !important;
+}
+@keyframes tm-demo-error-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.tm-demo-error-frame {
+  width: min(520px, 100%);
+  padding: 40px 28px 32px;
+  text-align: center;
+  border: 3px solid #ff2a2a;
+  background: #120404;
+  box-shadow:
+    0 0 0 1px rgba(255, 80, 80, 0.35),
+    0 0 56px rgba(255, 30, 40, 0.4),
+    inset 0 0 48px rgba(255, 0, 30, 0.1);
+  animation: tm-demo-error-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+@keyframes tm-demo-error-shake {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  20% { transform: translate3d(-6px, 0, 0); }
+  40% { transform: translate3d(6px, 0, 0); }
+  60% { transform: translate3d(-4px, 0, 0); }
+  80% { transform: translate3d(4px, 0, 0); }
+}
+.tm-demo-error-code {
+  margin: 0 0 14px;
+  color: #ff6b6b;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  animation: tm-demo-error-blink 1s steps(2, end) infinite;
+}
+.tm-demo-error-title {
+  margin: 0 0 18px;
+  color: #ff1f1f;
+  font-size: clamp(48px, 12vw, 72px);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-shadow: 0 0 28px rgba(255, 40, 40, 0.6);
+  animation: tm-demo-error-blink 0.85s steps(2, end) infinite;
+}
+.tm-demo-error-line {
+  margin: 0 0 28px;
+  color: #ffb4b4;
+  font-size: clamp(13px, 3.2vw, 16px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.55;
+}
+.tm-demo-error-ok {
+  appearance: none;
+  border: 2px solid #ff2a2a;
+  background: transparent;
+  color: #ff4d4d;
+  padding: 12px 28px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.tm-demo-error-ok:hover,
+.tm-demo-error-ok:focus-visible {
+  background: rgba(255, 40, 40, 0.16);
+  color: #fff;
+  outline: none;
+}
+@keyframes tm-demo-error-blink {
+  50% { opacity: 0.4; }
+}
+
+/* Recovery sheet (legacy shell, unused on product path) */
 .ob-sheet {
   position: fixed;
   inset: 0;
