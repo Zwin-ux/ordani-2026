@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="TinyMe — little link, big features. Make a short URL. Swap destinations. Make a link." />
+  <meta name="description" content="TinyMe — little link, big features. Make a link." />
   <meta name="theme-color" content="#0b0b0b" />
   <meta property="og:title" content="TinyMe — Little link. Big features." />
   <meta property="og:description" content="Little link. Big features. Make a link." />
-  <meta property="og:image" content="/assets/hero/space-poster.webp" />
+  <meta property="og:image" content="/assets/world/ch-00/plate.webp" />
   <title>TinyMe — Little link. Big features.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,124 +16,60 @@
 <body data-page="tinyme" data-world-mode="film">
   <a class="skip-link" href="#tm-main">Skip to content</a>
 
-  <header class="site-header world-header" data-header>
+  <header class="site-header world-header tm-simple-header" data-header>
     <a class="tinyme-brand" href="/tinyme" aria-label="TinyMe">
       <img src="/assets/brand/tinyme-gold.webp" alt="" width="30" height="32" />
       <strong>TinyMe</strong>
     </a>
-    <nav class="desktop-nav" aria-label="Primary">
-      <a href="/">Studio</a>
-      <a href="/tinyme" aria-current="page">TinyMe</a>
-    </nav>
     <a class="header-cta" href="/onboarding">Make a link <span aria-hidden="true">↗</span></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
-      <span>Menu</span>
-      <span class="glyph" aria-hidden="true">+</span>
-    </button>
   </header>
 
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden data-mobile-nav>
-    <a href="/">Studio</a>
-    <a href="/tinyme" aria-current="page">TinyMe</a>
-    <a href="/onboarding">Make a link</a>
-  </nav>
-
-  <!-- Minimal chrome: 3 beats only. No SIGNAL. No 05/06. -->
-  <div class="world-chrome tm-film-chrome" aria-hidden="true">
-    <div class="world-progress mono">
-      <span data-chapter-label>TINYME</span>
-      <span data-chapter-index>1 / 3</span>
-    </div>
-    <div class="world-ticks" data-world-ticks>
-      <button type="button" data-tick="0" class="is-active" aria-label="Beat 1"></button>
-      <button type="button" data-tick="1" aria-label="Beat 2"></button>
-      <button type="button" data-tick="2" aria-label="Beat 3"></button>
-    </div>
-    <a class="world-skip mono" href="#exit">Make a link ↓</a>
-  </div>
-
-  <main id="tm-main" class="world-main">
-    <!-- ONE film. Scroll scrubs it. Copy changes. -->
-    <div class="world-stage tm-film-stage" data-world-stage>
-      <div class="world-stage-media" data-stage-media>
-        <video
-          class="world-video tm-film is-active"
-          data-stage-video
-          data-film-src="/assets/world/film/tinyme-world.mp4"
-          poster="/assets/hero/space-poster.webp"
-          muted
-          playsinline
-          preload="auto"
-          loop
-        >
-          <source src="/assets/world/film/tinyme-world.mp4" type="video/mp4" />
-          <source src="/assets/hero/space-soft.mp4" type="video/mp4" />
-        </video>
-        <img
-          class="world-plate tm-film-poster is-active"
-          data-film-poster
-          src="/assets/hero/space-poster.webp"
-          alt=""
-          width="1920"
-          height="1080"
-          fetchpriority="high"
-        />
+  <main id="tm-main" class="tm-film-main">
+    <!--
+      Design (single job):
+      1 film. 1 idea. 1 CTA.
+      Scroll = scrub the film. No multi-plate world. No SIGNAL. No chapter theater.
+    -->
+    <div class="tm-film-stage" data-world-stage>
+      <video
+        class="tm-film-video"
+        data-stage-video
+        poster="/assets/world/ch-00/plate.webp"
+        muted
+        playsinline
+        preload="auto"
+        loop
+      >
+        <source src="/assets/world/film/tinyme-world.mp4" type="video/mp4" />
+      </video>
+      <div class="tm-film-veil" aria-hidden="true"></div>
+      <div class="tm-film-copy" data-stage-copy>
+        <p class="tm-film-kicker mono">TINYME</p>
+        <h1 class="tm-film-title">
+          Little link.<br />
+          <span class="gold">Big features.</span>
+        </h1>
+        <p class="tm-film-line">Short URL. Swap destinations.</p>
       </div>
-      <div class="world-vignette"></div>
-      <div class="world-copy" data-stage-copy>
-        <p class="world-kicker mono" data-copy-kicker>TINYME</p>
-        <h1 class="world-headline" data-copy-headline>Little link.</h1>
-        <p class="world-sub" data-copy-sub>Big features.</p>
-      </div>
+      <a class="tm-film-skip mono" href="#exit">Make a link ↓</a>
     </div>
 
-    <div class="world-track" data-world-track>
-      <section class="world-chapter" data-chapter="0" style="--vh: 1.2" aria-label="Beat 1">
-        <div class="world-chapter-spacer"></div>
-      </section>
-      <section class="world-chapter" data-chapter="1" style="--vh: 1.1" aria-label="Beat 2">
-        <div class="world-chapter-spacer"></div>
-      </section>
-      <section class="world-chapter" data-chapter="2" style="--vh: 1.1" aria-label="Beat 3">
-        <div class="world-chapter-spacer"></div>
-      </section>
-    </div>
+    <!-- Scroll length only exists to scrub the film -->
+    <div class="tm-film-track" data-world-track aria-hidden="true"></div>
 
-    <section class="world-exit section-shell" id="exit" aria-labelledby="exit-title">
-      <div class="world-exit-inner">
-        <div class="world-exit-brand reveal">
-          <img src="/assets/brand/tinyme-gold.webp" alt="" width="56" height="60" />
-          <div>
-            <p class="mono byline">TINYME</p>
-            <h2 id="exit-title">Make a link.</h2>
-          </div>
-        </div>
-        <p class="world-exit-copy reveal">
-          Short URL. Swap destinations.
-        </p>
-        <div class="world-exit-actions reveal">
-          <a class="btn btn-gold" href="/onboarding">Make a link <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
+    <section class="tm-film-exit" id="exit" aria-labelledby="exit-title">
+      <img src="/assets/brand/tinyme-gold.webp" alt="" width="48" height="52" />
+      <h2 id="exit-title">Make a link.</h2>
+      <p>Print once. Change where it opens later.</p>
+      <a class="btn btn-gold" href="/onboarding">Make a link <span aria-hidden="true">↗</span></a>
     </section>
   </main>
 
-  <footer class="site-footer section-shell">
-    <div class="footer-top">
-      <div class="tinyme-brand">
-        <img src="/assets/brand/tinyme-gold.webp" alt="" width="30" height="32" loading="lazy" />
-        <strong>TinyMe</strong>
-      </div>
-      <p class="tagline">Little link. Big features.</p>
-    </div>
-    <nav class="footer-nav mono" aria-label="Footer">
-      <a href="/">Studio</a>
-      <a href="/onboarding">Make a link</a>
-      <a href="/console?skip=1">Console</a>
-    </nav>
+  <footer class="site-footer section-shell tm-simple-foot">
     <div class="footer-bottom mono">
       <span>© 2026 Ordani Studios</span>
-      <a href="#tm-main">Top ↑</a>
+      <a href="/">Studio</a>
+      <a href="/console?skip=1">Console</a>
     </div>
   </footer>
 
