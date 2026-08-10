@@ -1,103 +1,78 @@
 # Ordani Studios + TinyMe
 
-Product studio site and link operations backend.
+**Little link. Big features.**
 
-## What's Here
+Short URL. Swap destinations. Track clicks.
+
+[![Live demo](https://zwin-ux.github.io/ordani-2026/)](https://zwin-ux.github.io/ordani-2026/)
+
+## Demo
+
+![TinyMe demo](docs/demo/tinyme-demo.gif)
+
+[Full MP4](docs/demo/tinyme-demo.mp4) · [GitHub Pages](https://zwin-ux.github.io/ordani-2026/) · [Showcase](https://zwin-ux.github.io/ordani-2026/showcase/)
+
+Static Pages demo ships marketing, world, onboarding UI, console shell, and the domain STOP halt. Live short-link API is not on Pages.
+
+---
+
+## What's here
 
 ```
-├── public/              Frontend (static HTML/CSS/JS)
-│   ├── index.html       Ordani Studios homepage
-│   ├── tinyme.html      TinyMe product page
-│   ├── styles.css       Design system
-│   └── app.js           Interactive behavior
-│
-├── backend/             Go + Fiber API server
-│   ├── cmd/server/      Entry point
-│   ├── internal/        Services, handlers, models
-│   ├── migrations/      PostgreSQL schema
-│   └── Dockerfile       Railway deploy
-│
-├── data/                Content data (JSON)
-├── scripts/             Dev server, validation
-└── resources/           Laravel Blade templates (future)
+├── public/              Studio + TinyMe static site
+│   ├── index.html       Ordani home
+│   ├── tinyme.html      Product page
+│   ├── onboarding.html  First-link flow
+│   ├── console.html     Operator console
+│   ├── world.html       Scroll world
+│   └── showcase.html    Screens / gifs gallery
+├── backend/             Go + Fiber + Postgres API
+├── docs/                PRD, setup, Pages guide
+└── scripts/             Dev server, Pages build, smokes
 ```
 
-## Quick Start
-
-**Frontend** (no install required):
+## Quick start
 
 ```bash
 npm start
-# → http://localhost:4173/
-# → http://localhost:4173/world
-# → http://localhost:4173/tinyme
-npm run check
+# http://localhost:4173/
+# http://localhost:4173/tinyme
+# http://localhost:4173/onboarding
+# http://localhost:4173/world
+# http://localhost:4173/showcase
 ```
 
-Production notes: `docs/PRODUCTION.md` · Scroll world bible: `docs/SCROLL-WORLD-SHOT-BIBLE.md`
-
-## GitHub Pages (static demo)
-
-Screenshots, gifs, marketing UI, onboarding/console shells, domain STOP halt.
+### GitHub Pages
 
 ```bash
-npm run pages:build     # → dist/ with /ordani-2026 base path
-npm run pages:preview   # build + serve dist locally
+npm run pages:build
+# deploys on push to main via .github/workflows/pages.yml
 ```
 
-- Live (after first Actions deploy): https://zwin-ux.github.io/ordani-2026/
-- Showcase gallery: `/showcase` — drop media in `public/assets/showcase/` + edit `manifest.json`
-- Setup: **Settings → Pages → Source: GitHub Actions** (workflow: `.github/workflows/pages.yml`)
-- Full guide: `docs/GITHUB-PAGES.md`
+Live: **https://zwin-ux.github.io/ordani-2026/**
 
-**Not on Pages:** live short-link API / Postgres. Create → SYSTEM HALT until domain is locked.
+Drop screenshots/GIFs in `public/assets/showcase/` and list them in `manifest.json`.
 
-**Backend** (requires Go + PostgreSQL):
+### API (local)
 
 ```bash
 cd backend
-docker run -d --name tinyme-pg -p 5432:5432 -e POSTGRES_DB=tinyme -e POSTGRES_PASSWORD=dev postgres:16
-export DATABASE_URL="postgres://postgres:dev@localhost:5432/tinyme?sslmode=disable"
-psql $DATABASE_URL -f migrations/001_initial.sql
+# Postgres + API_KEY=dev-local-key
 go run ./cmd/server
-# → http://localhost:8080
+# http://localhost:8080/health
 ```
 
-## Deploy to Railway
+See `docs/TINYME-SETUP.md` and `docs/TINYME-FEATURE-CHECKLIST.md`.
 
-1. Push to GitHub
-2. Create Railway project → "Deploy from GitHub"
-3. Add PostgreSQL service
-4. Set `API_KEY`, `BASE_URL`, `REDIRECT_BASE`
-5. Run migration: `railway run psql $DATABASE_URL -f migrations/001_initial.sql`
+## Product
 
-## API
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/links` | Create short link |
-| `GET` | `/api/links` | List all links |
-| `GET` | `/api/links/:id` | Get link + destinations + rules |
-| `PATCH` | `/api/links/:id` | Update link settings |
-| `DELETE` | `/api/links/:id` | Soft-delete link |
-| `POST` | `/api/links/:id/destinations` | Add destination |
-| `PATCH` | `/api/links/:id/destinations/:destId` | Update destination |
-| `POST` | `/api/links/:id/destinations/:destId/rollback` | Rollback URL |
-| `POST` | `/api/links/:id/rules` | Add routing rule |
-| `DELETE` | `/api/links/:id/rules/:ruleId` | Delete routing rule |
-| `GET` | `/api/links/:id/analytics` | Analytics summary |
-| `GET` | `/api/links/:id/events` | Raw click events |
-| `GET` | `/:slug` | **Redirect** (public) |
-
-All `/api/*` endpoints require `Authorization: Bearer <API_KEY>`.
-
-## Design System
-
-- **Typography**: Space Grotesk + Inter + JetBrains Mono
-- **Palette**: Carbon, Paper, Gold, Orange, Green, Red
-- **Spacing**: 8px base, 9-step scale
-- **Motion**: Respects `prefers-reduced-motion`
+| Surface | Role |
+|---------|------|
+| Onboarding | First short link |
+| Console | Create, swap, history, rollback, analytics, rules, soft-delete |
+| API | Link → Destination → Rule → Event |
+| Domain halt | Arcade STOP until short domain is bought + locked |
 
 ## License
 
-Private — Ordani Studios 2026
+Private prototype · Ordani Studios · 2026

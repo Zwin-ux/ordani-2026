@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="TinyMe: set the destination, route each click, separate people from bots." />
+  <meta name="description" content="TinyMe — little link, big features. Short URL. Swap destinations. Track clicks." />
   <meta name="theme-color" content="#11100d" />
-  <title>TinyMe — One public link. Full control after print.</title>
+  <title>TinyMe — Little link. Big features.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="/styles.css" />
@@ -53,13 +53,13 @@
       <div class="tm-hero-copy">
         <div class="tm-kicker mono reveal">Private prototype · sample data</div>
         <h1 data-split>
-          <span>One public link.</span>
-          <span class="gold">Full control after print.</span>
+          <span>Little link.</span>
+          <span class="gold">Big features.</span>
         </h1>
-        <p class="reveal">Set the destination, route each click, and separate people from bots.</p>
+        <p class="reveal">Short URL. Swap destinations. Track clicks — people separate from bots.</p>
         <div class="tm-actions reveal">
-          <a class="btn btn-gold" href="/onboarding">Create your first link <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="#features">How it works <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-gold" href="/onboarding">Make a link <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#features">What’s inside <span aria-hidden="true">↗</span></a>
         </div>
       </div>
 
@@ -169,92 +169,38 @@
       <div class="features-grid">
         <article class="feature-card feature-card-hero reveal">
           <div class="feature-icon" aria-hidden="true">↗</div>
-          <h3>Editable destinations</h3>
-          <p>Change where a link points without reprinting, re-sharing, or losing a single click. Destination history and one-click rollback included.</p>
-          <ul class="feature-tags mono">
-            <li>Destination history</li>
-            <li>One-click rollback</li>
-            <li>Backup destinations</li>
-          </ul>
-        </article>
-
-        <article class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true">◆</div>
-          <h3>Routing rules</h3>
-          <p>Send different visitors to different destinations based on country, device, schedule, or weight. Fallback destinations handle the rest.</p>
-          <ul class="feature-tags mono">
-            <li>Country / region</li>
-            <li>Device type</li>
-            <li>Scheduled</li>
-            <li>Weighted</li>
-          </ul>
+          <h3>Swap destinations</h3>
+          <p>Change where it opens without reprinting. History and rollback stay on the same short address.</p>
         </article>
 
         <article class="feature-card reveal">
           <div class="feature-icon" aria-hidden="true">◎</div>
           <h3>Privacy-aware analytics</h3>
           <p>Human clicks, bots, referrers, devices, coarse geography, latency — all separated and honest. No fake totals. No surveillance.</p>
-          <ul class="feature-tags mono">
-            <li>Human vs bot</li>
-            <li>Coarse geography</li>
-            <li>Referrer tracking</li>
-            <li>Latency metrics</li>
-          </ul>
-        </article>
-
-        <article class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true">▣</div>
-          <h3>Custom domains</h3>
-          <p>Bring a branded short domain when that path ships. DNS and HTTPS setup are the intended direction — not live self-serve yet.</p>
-          <ul class="feature-tags mono">
-            <li>Direction</li>
-            <li>DNS + HTTPS</li>
-            <li>Branded host</li>
-          </ul>
         </article>
 
         <article class="feature-card reveal">
           <div class="feature-icon" aria-hidden="true">⊞</div>
           <h3>QR codes</h3>
           <p>Generate QR codes for any link. Download as PNG or SVG. Include your brand colors. Track QR-specific scans separately.</p>
-          <ul class="feature-tags mono">
-            <li>PNG + SVG</li>
-            <li>Brand colors</li>
-            <li>Scan tracking</li>
-          </ul>
         </article>
 
         <article class="feature-card reveal">
           <div class="feature-icon" aria-hidden="true">⊡</div>
           <h3>Protection</h3>
           <p>Password-protect links, set expiration dates, and limit total clicks. Expired links show a configurable landing page.</p>
-          <ul class="feature-tags mono">
-            <li>Password</li>
-            <li>Expiration</li>
-            <li>Click limits</li>
-          </ul>
         </article>
 
         <article class="feature-card reveal">
           <div class="feature-icon" aria-hidden="true">⊟</div>
           <h3>Tags and organization</h3>
           <p>Tags, folders, and workspaces keep hundreds of links organized. Filter by tag, domain, status, or date range.</p>
-          <ul class="feature-tags mono">
-            <li>Tags</li>
-            <li>Folders</li>
-            <li>Workspaces</li>
-          </ul>
         </article>
 
         <article class="feature-card reveal">
           <div class="feature-icon" aria-hidden="true">△</div>
           <h3>Destination health</h3>
           <p>Monitor whether your destination is actually reachable. Get alerted when response times spike or pages start returning errors.</p>
-          <ul class="feature-tags mono">
-            <li>Uptime checks</li>
-            <li>Response time</li>
-            <li>Error alerts</li>
-          </ul>
         </article>
       </div>
     </section>
@@ -279,11 +225,6 @@
           <div class="how-visual link-card">
             <span class="mono-label">Your link</span>
             <div class="big-text">tinyme.cc/summer</div>
-            <div class="how-features mono">
-              <span>Custom slug</span>
-              <span>Any domain</span>
-              <span>No sign-up to try</span>
-            </div>
           </div>
         </article>
 
@@ -297,11 +238,6 @@
             <span class="mono-label">Current destination</span>
             <div class="big-text" data-destination>store.example.com/summer-2026</div>
             <button class="btn-sm" type="button" data-swap-destination>Swap route</button>
-            <div class="how-features mono">
-              <span>Destination history</span>
-              <span>One-click rollback</span>
-              <span>Routing rules</span>
-            </div>
           </div>
         </article>
 
@@ -367,7 +303,7 @@
 
           <!-- Rules panel -->
           <section class="console-panel" data-console-panel="rules" hidden>
-            <span class="panel-label mono">Routing rules</span>
+            <span class="panel-label mono">Rules</span>
             <div class="rule-list">
               <div class="rule-row"><span class="rule-num mono">01</span><strong>Mobile visitors</strong><span class="arrow">→ app.example.com</span><span class="status">Active</span></div>
               <div class="rule-row"><span class="rule-num mono">02</span><strong>After Aug 30</strong><span class="arrow">→ archive.example.com</span><span class="status">Scheduled</span></div>
@@ -585,25 +521,21 @@
           <span class="use-case-num mono">01</span>
           <h3>Product launches</h3>
           <p>Print 10,000 flyers with tinyme.cc/launch. When the landing page changes for v2, update the destination — not the flyers.</p>
-          <div class="use-case-tags mono"><span>Campaigns</span><span>Print</span><span>QR codes</span></div>
         </article>
         <article class="use-case-card reveal">
           <span class="use-case-num mono">02</span>
           <h3>Social media teams</h3>
           <p>One short link per campaign. Route mobile users to the app, desktop users to the landing page, and schedule archive redirects after the campaign ends.</p>
-          <div class="use-case-tags mono"><span>Routing</span><span>Schedule</span><span>Device split</span></div>
         </article>
         <article class="use-case-card reveal">
           <span class="use-case-num mono">03</span>
           <h3>Client reporting</h3>
-          <p>Report human clicks only — no bot inflation, no fake totals. Export CSV or JSON. Branded short domains are product direction for agencies.</p>
-          <div class="use-case-tags mono"><span>Analytics</span><span>Export</span><span>Direction</span></div>
+          <p>Report human clicks only — no bot inflation, no fake totals. Export CSV or JSON when you need a clean read for clients.</p>
         </article>
         <article class="use-case-card reveal">
           <span class="use-case-num mono">04</span>
           <h3>Internal tools</h3>
           <p>Link to internal docs, dashboards, and runbooks. When the URL changes after a migration, update the destination — bookmarks stay valid.</p>
-          <div class="use-case-tags mono"><span>Internal</span><span>Rollback</span><span>History</span></div>
         </article>
       </div>
     </section>
@@ -627,12 +559,11 @@
           </div>
           <ul class="pricing-features">
             <li><span class="check" aria-hidden="true">✓</span> 50 links</li>
-            <li><span class="check" aria-hidden="true">✓</span> tinyme.cc domain</li>
             <li><span class="check" aria-hidden="true">✓</span> Basic analytics</li>
             <li><span class="check" aria-hidden="true">✓</span> QR codes</li>
             <li><span class="check" aria-hidden="true">✓</span> 30-day analytics retention</li>
           </ul>
-          <a class="btn btn-ghost" href="#demo" style="width:100%;justify-content:center;">Get started</a>
+          <a class="btn btn-ghost" href="/onboarding" style="width:100%;justify-content:center;">Get started</a>
         </article>
 
         <article class="pricing-card pricing-card-featured reveal">
@@ -644,14 +575,12 @@
           </div>
           <ul class="pricing-features">
             <li><span class="check" aria-hidden="true">✓</span> Unlimited links</li>
-            <li><span class="check" aria-hidden="true">✓</span> Custom domains <em class="pricing-dir">(direction)</em></li>
             <li><span class="check" aria-hidden="true">✓</span> Advanced analytics</li>
-            <li><span class="check" aria-hidden="true">✓</span> Routing rules</li>
             <li><span class="check" aria-hidden="true">✓</span> Password protection</li>
             <li><span class="check" aria-hidden="true">✓</span> 1-year analytics retention</li>
             <li><span class="check" aria-hidden="true">✓</span> API access</li>
           </ul>
-          <a class="btn btn-gold" href="#demo" style="width:100%;justify-content:center;">Start free trial</a>
+          <a class="btn btn-gold" href="/onboarding" style="width:100%;justify-content:center;">Start free trial</a>
         </article>
 
         <article class="pricing-card reveal">
@@ -669,7 +598,7 @@
             <li><span class="check" aria-hidden="true">✓</span> Unlimited analytics retention</li>
             <li><span class="check" aria-hidden="true">✓</span> Priority support</li>
           </ul>
-          <a class="btn btn-ghost" href="#demo" style="width:100%;justify-content:center;">Contact us</a>
+          <a class="btn btn-ghost" href="/onboarding" style="width:100%;justify-content:center;">Contact us</a>
         </article>
       </div>
       <p class="pricing-note mono reveal">Pricing is directional. Final tiers will be confirmed before launch.</p>
@@ -708,7 +637,7 @@
         <strong>TinyMe</strong>
         <span class="by mono">By Ordani</span>
       </div>
-      <p class="tagline">One public link. Control after print.</p>
+      <p class="tagline">Little link. Big features.</p>
     </div>
     <nav class="footer-nav mono" aria-label="Footer navigation">
       <a href="#demo">Demo</a>

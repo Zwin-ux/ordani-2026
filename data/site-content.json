@@ -1,9 +1,9 @@
 {
   "studio": {
     "name": "Ordani Studios",
-    "eyebrow": "Independent digital product studio / 2026",
-    "headline": "Small tools. Large reach.",
-    "statement": "Ordani designs and operates focused digital products, infrastructure, and interactive systems for the modern web."
+    "eyebrow": "Product studio / 2026",
+    "headline": "Useful systems made by real people",
+    "statement": "Ordani builds products for real people, for real problems."
   },
   "products": [
     {
@@ -11,38 +11,57 @@
       "name": "TinyMe",
       "category": "Link operations",
       "status": "Product direction",
-      "tagline": "Public links you can still control.",
-      "description": "A durable control plane for links already printed, posted, shared, embedded, and distributed.",
-      "capabilities": ["Editable destinations", "Routing rules", "Privacy-aware analytics", "Custom domains"]
+      "tagline": "Little link. Big features.",
+      "description": "Short URL. Swap destinations. Track clicks.",
+      "capabilities": []
     },
     {
       "id": "datapad",
       "name": "Datapad",
-      "category": "Community operations",
+      "category": "Community tools",
       "status": "Active",
-      "tagline": "A configurable Discord operations bot.",
-      "description": "Connects roster management, moderation, permissions, and Google Sheets workflows.",
-      "capabilities": ["Discord.js", "Roster automation", "Permission controls", "Configurable workflows"]
+      "tagline": "Discord bot for operations work.",
+      "description": "Roster work, moderation, and Sheets tasks.",
+      "capabilities": [
+        "Discord.js",
+        "Roster automation",
+        "Permission controls",
+        "Configurable workflows"
+      ]
     },
     {
       "id": "research",
       "name": "Ordani Research",
-      "category": "Interactive systems",
+      "category": "Research",
       "status": "Exploration",
-      "tagline": "Small experiments in infrastructure and interfaces.",
-      "description": "Prototypes around web infrastructure, multiplayer utilities, and expressive interfaces.",
-      "capabilities": ["Prototypes", "Systems design", "Interface research", "Release notes"]
+      "tagline": "Small system tests.",
+      "description": "Notes when a result is useful.",
+      "capabilities": [
+        "Prototypes",
+        "Systems",
+        "Interface research",
+        "Release notes"
+      ]
     }
   ],
   "team": [
-    { "name": "Azara", "role": "Product direction" },
-    { "name": "Tundra", "role": "Engineering" },
-    { "name": "Abel", "role": "Public operations" }
+    {
+      "name": "Azara",
+      "role": "Product direction"
+    },
+    {
+      "name": "Tundra",
+      "role": "Engineering"
+    },
+    {
+      "name": "Abel",
+      "role": "Public operations"
+    }
   ],
   "principles": [
-    "Build products with an obvious reason to exist.",
-    "Use motion to explain the system, not decorate it.",
-    "Publish real evidence instead of inflated metrics.",
-    "Keep infrastructure invisible until it needs to be understood."
+    "State the problem in one sentence.",
+    "Use motion to show the route.",
+    "Label sample data as sample data.",
+    "Keep the product simple for the user."
   ]
 }

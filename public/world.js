@@ -44,7 +44,7 @@
       label: "WORLD / 05 — CONTROL",
       kicker: "05 · EXIT",
       headline: "Keep control.",
-      sub: "Open TinyMe.",
+      sub: "Little link. Big features.",
       video: null,
     },
   ];

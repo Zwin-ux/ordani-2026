@@ -1,6 +1,14 @@
 # GitHub Pages build output
 /dist/
 
+# Demo intermediates (keep tinyme-demo.gif / .mp4)
+docs/demo/screen-raw.mp4
+docs/demo/screen-clip.mp4
+docs/demo/montage.mp4
+docs/demo/hero-clip.mp4
+docs/demo/halt-clip.mp4
+docs/demo/*.txt
+
 # Local env / binaries
 .env
 .env.*
