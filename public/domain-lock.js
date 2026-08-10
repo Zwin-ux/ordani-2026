@@ -142,10 +142,8 @@
             <li>4. Then mint links that survive print</li>
           </ul>
           <div class="tm-halt-actions">
-            <button type="button" class="btn btn-gold btn-sm" id="tm-halt-ack">I hear you, goat</button>
-            <button type="button" class="btn btn-ghost btn-sm" id="tm-halt-lab">Stay in lab mode</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="tm-halt-ack">OK</button>
           </div>
-          <p class="tm-halt-credit mono">made by the 🐐</p>
         </div>
       </div>
     `;
@@ -155,61 +153,34 @@
       if (ev.target === root) closeHalt();
     });
     root.querySelector("#tm-halt-ack")?.addEventListener("click", () => closeHalt());
-    root.querySelector("#tm-halt-lab")?.addEventListener("click", () => {
-      try {
-        sessionStorage.setItem("tinyme.halt.lab", "1");
-      } catch {
-        /* ignore */
-      }
-      closeHalt();
-    });
 
     return root;
   }
 
-  function playHaltMedia() {
-    const video = document.getElementById("tm-halt-video");
-    const poster = document.getElementById("tm-halt-poster");
-    if (!video) return;
-    const tryPlay = () => {
-      video.hidden = false;
-      if (poster) poster.hidden = true;
-      const p = video.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          video.hidden = true;
-          if (poster) poster.hidden = false;
-        });
-      }
-    };
-    if (video.readyState >= 2) tryPlay();
-    else {
-      video.addEventListener("loadeddata", tryPlay, { once: true });
-      video.load();
-      // fallback if no video file
-      window.setTimeout(() => {
-        if (video.readyState < 2) {
-          video.hidden = true;
-          if (poster) poster.hidden = false;
-        }
-      }, 1200);
-    }
-  }
-
   function showHalt(opts = {}) {
+    // Prefer the red demo interrupt — no goat media / halt reel
+    if (window.TinyMeDemoError?.show) {
+      window.TinyMeDemoError.show();
+      return;
+    }
     const root = ensureHaltDom();
     const domain = normalizeDomain(opts.domain || "");
     const lead = root.querySelector("#tm-halt-lead");
     const body = root.querySelector("#tm-halt-body");
     if (lead) {
-      lead.textContent = domain
-        ? `THIS DOMAIN ISN'T CONFIGURED · ${domain}`
-        : "THIS DOMAIN ISN'T CONFIGURED";
+      lead.textContent = "THIS WAS A DEMO TO SHOW AURA";
     }
-    if (body && opts.message) body.textContent = opts.message;
+    if (body) {
+      body.textContent =
+        opts.message ||
+        "AND I DONT WANT TO WASTE MY RAILWAY BACKEND SPACE";
+    }
+    const list = root.querySelector("#tm-halt-list");
+    if (list) list.hidden = true;
+    const media = root.querySelector(".tm-halt-media");
+    if (media) media.hidden = true;
     root.hidden = false;
     document.body.classList.add("tm-halt-open");
-    playHaltMedia();
     root.querySelector("#tm-halt-ack")?.focus();
   }
 

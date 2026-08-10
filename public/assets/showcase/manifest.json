@@ -1,46 +1,29 @@
 {
   "items": [
     {
-      "title": "World - threshold",
-      "src": "/assets/world/ch-00/plate.webp"
+      "title": "Site tour - scroll",
+      "src": "/assets/showcase/scroll/site-tour.gif"
     },
     {
-      "title": "Onboarding - print",
-      "src": "/assets/onboarding/world/ob-print.webp"
+      "title": "Home - scroll",
+      "src": "/assets/showcase/scroll/home.gif"
     },
     {
-      "title": "Onboarding - QR",
-      "src": "/assets/onboarding/world/ob-qr.webp"
+      "title": "TinyMe - scroll",
+      "src": "/assets/showcase/scroll/tinyme.gif"
     },
     {
-      "title": "Onboarding - social",
-      "src": "/assets/onboarding/world/ob-social.webp"
+      "title": "Onboarding - scroll",
+      "src": "/assets/showcase/scroll/onboarding.gif"
     },
     {
-      "title": "Domain STOP - still",
-      "src": "/assets/onboarding/halt/stop-poster.jpg"
+      "title": "Console - scroll",
+      "src": "/assets/showcase/scroll/console.gif"
     },
     {
-      "title": "Domain STOP - loop",
-      "src": "/assets/onboarding/halt/stop-soft.mp4",
+      "title": "Site tour - video",
+      "src": "/assets/showcase/scroll/site-tour.mp4",
       "type": "video"
-    },
-    {
-      "title": "Hero - space",
-      "src": "/assets/hero/space-poster.webp"
-    },
-    {
-      "title": "TinyMe mark",
-      "src": "/assets/brand/tinyme-gold.webp"
-    },
-    {
-      "title": "Product demo reel",
-      "src": "/assets/demo/tinyme-demo.mp4",
-      "type": "video"
-    },
-    {
-      "title": "Product demo GIF",
-      "src": "/assets/demo/tinyme-demo.gif"
     }
   ]
 }

@@ -15,3 +15,16 @@ docs/demo/*.txt
 !.env.example
 tmp/
 *.exe
+
+# showcase capture intermediates
+public/assets/showcase/scroll/*.png
+public/assets/showcase/scroll/*-clip.mp4
+public/assets/showcase/scroll/home.mp4
+public/assets/showcase/scroll/tinyme.mp4
+public/assets/showcase/scroll/onboarding.mp4
+public/assets/showcase/scroll/console.mp4
+public/assets/showcase/scroll/showcase.mp4
+public/assets/showcase/scroll/concat.txt
+public/assets/showcase/scroll/tmp.mp4
+public/assets/onboarding/halt/
+

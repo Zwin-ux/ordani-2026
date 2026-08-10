@@ -50,11 +50,9 @@
     } catch {
       // Built-in fallbacks so the page never feels empty on first deploy
       const fallbacks = [
-        { title: "World · threshold", file: "fallback-world.webp", src: "/assets/world/ch-00/plate.webp" },
-        { title: "Onboarding · print plate", file: "fallback-print.webp", src: "/assets/onboarding/world/ob-print.webp" },
-        { title: "Domain STOP poster", file: "fallback-stop.jpg", src: "/assets/onboarding/halt/stop-poster.jpg" },
-        { title: "Domain STOP motion", file: "fallback-stop.mp4", src: "/assets/onboarding/halt/stop-soft.mp4", type: "video" },
-        { title: "Hero space", file: "fallback-hero.webp", src: "/assets/hero/space-poster.webp" },
+        { title: "Site tour", src: "/assets/showcase/scroll/site-tour.gif" },
+        { title: "Home scroll", src: "/assets/showcase/scroll/home.gif" },
+        { title: "TinyMe scroll", src: "/assets/showcase/scroll/tinyme.gif" },
       ];
       grid.replaceChildren(...fallbacks.map(card));
     }

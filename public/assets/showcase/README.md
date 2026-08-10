@@ -8,8 +8,8 @@ Drop screenshots, GIFs, and short MP4s here for the GitHub Pages gallery.
 ```json
 {
   "items": [
-    { "title": "Console swap", "file": "console-swap.gif" },
-    { "title": "Halt loop", "src": "/assets/onboarding/halt/stop-soft.mp4", "type": "video" }
+    { "title": "Home scroll", "src": "/assets/showcase/scroll/home.gif" },
+    { "title": "TinyMe scroll", "src": "/assets/showcase/scroll/tinyme.gif" }
   ]
 }
 ```

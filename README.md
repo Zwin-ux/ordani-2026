@@ -8,11 +8,11 @@ Short URL. Swap destinations. Track clicks.
 
 ## Demo
 
-![TinyMe demo](docs/demo/tinyme-demo.gif)
+![Site scroll tour](docs/demo/site-tour.gif)
 
-[Full MP4](docs/demo/tinyme-demo.mp4) · [GitHub Pages](https://zwin-ux.github.io/ordani-2026/) · [Showcase](https://zwin-ux.github.io/ordani-2026/showcase/)
+[Full MP4](docs/demo/site-tour.mp4) · [GitHub Pages](https://zwin-ux.github.io/ordani-2026/) · [Showcase](https://zwin-ux.github.io/ordani-2026/showcase/)
 
-Static Pages demo ships marketing, world, onboarding UI, console shell, and the domain STOP halt. Live short-link API is not on Pages.
+Scroll GIFs of home, TinyMe, onboarding, and console. Static Pages only — no live short-link backend.
 
 ---
 
