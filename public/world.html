@@ -3,151 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Scroll World shows how a public link moves through publish, route, swap, and signal. TinyMe by Ordani Studios." />
-  <meta name="theme-color" content="#0b0b0b" />
-  <meta property="og:title" content="Scroll World — Ordani Studios" />
-  <meta property="og:description" content="A link is not a dead string. Scroll to see how TinyMe works." />
-  <meta property="og:image" content="/assets/world/ch-00/plate.webp" />
-  <title>Scroll World — Ordani Studios</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta name="description" content="Scroll World lives on TinyMe. Redirecting." />
+  <meta http-equiv="refresh" content="0;url=/tinyme" />
+  <link rel="canonical" href="/tinyme" />
+  <title>Scroll World → TinyMe</title>
   <link rel="stylesheet" href="/styles.css" />
+  <script>
+    // Project Pages base-aware redirect
+    (function () {
+      var base = (window.__PAGES_BASE__ || "").replace(/\/+$/, "");
+      var path = base + "/tinyme";
+      // If base not injected yet (raw world.html on GH Pages path)
+      if (!base && /\/ordani-2026\//.test(location.pathname)) {
+        path = "/ordani-2026/tinyme";
+      }
+      location.replace(path + (location.search || "") + (location.hash || ""));
+    })();
+  </script>
 </head>
 <body data-page="world">
-  <a class="skip-link" href="#world-main">Skip to content</a>
-
-  <header class="site-header world-header" data-header>
-    <a class="brand" href="/" aria-label="Ordani Studios home">
-      <img class="brand-mark" src="/assets/brand/ordani-single-orange.png" alt="" width="32" height="32" />
-      <span class="brand-word">Ordani</span>
-    </a>
-    <nav class="desktop-nav" aria-label="Primary navigation">
-      <a href="/">Studio</a>
-      <a href="/tinyme">TinyMe</a>
-      <a href="/world" aria-current="page">World</a>
-    </nav>
-    <a class="header-cta" href="#exit">Try TinyMe <span aria-hidden="true">↗</span></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
-      <span>Menu</span>
-      <span class="glyph" aria-hidden="true">+</span>
-    </button>
-  </header>
-
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden data-mobile-nav>
-    <a href="/">Studio</a>
-    <a href="/tinyme">TinyMe</a>
-    <a href="/world" aria-current="page">World</a>
-    <a href="/tinyme#demo">Try TinyMe</a>
-  </nav>
-
-  <div class="world-chrome" aria-hidden="true">
-    <div class="world-progress mono" data-world-progress>
-      <span data-chapter-label>WORLD / 00 — VOID</span>
-      <span data-chapter-index>01 / 06</span>
-    </div>
-    <div class="world-ticks" data-world-ticks>
-      <button type="button" data-tick="0" class="is-active" aria-label="Chapter 0"></button>
-      <button type="button" data-tick="1" aria-label="Chapter 1"></button>
-      <button type="button" data-tick="2" aria-label="Chapter 2"></button>
-      <button type="button" data-tick="3" aria-label="Chapter 3"></button>
-      <button type="button" data-tick="4" aria-label="Chapter 4"></button>
-      <button type="button" data-tick="5" aria-label="Chapter 5"></button>
-    </div>
-    <a class="world-skip mono" href="#exit">Skip experience ↓</a>
-  </div>
-
-  <main id="world-main" class="world-main">
-    <!-- Pinned stage -->
-    <div class="world-stage" data-world-stage aria-hidden="true">
-      <div class="world-stage-media" data-stage-media>
-        <img
-          class="world-plate is-active"
-          data-plate="0"
-          src="/assets/world/ch-00/plate.webp"
-          alt=""
-          width="1920"
-          height="1080"
-          fetchpriority="high"
-        />
-        <img class="world-plate" data-plate="1" src="/assets/world/ch-01/plate.webp" alt="" width="1920" height="1080" loading="lazy" />
-        <img class="world-plate" data-plate="2" src="/assets/world/ch-02/plate.webp" alt="" width="1920" height="1080" loading="lazy" />
-        <img class="world-plate" data-plate="3" src="/assets/world/ch-03/plate.webp" alt="" width="1920" height="1080" loading="lazy" />
-        <img class="world-plate" data-plate="4" src="/assets/world/ch-04/plate.webp" alt="" width="1920" height="1080" loading="lazy" />
-        <img class="world-plate" data-plate="5" src="/assets/world/ch-05/plate.webp" alt="" width="1920" height="1080" loading="lazy" />
-        <video class="world-video" data-stage-video muted playsinline preload="none" hidden></video>
-      </div>
-      <div class="world-vignette"></div>
-      <div class="world-copy" data-stage-copy>
-        <p class="world-kicker mono" data-copy-kicker>TINYME / by ORDANI STUDIOS</p>
-        <h1 class="world-headline" data-copy-headline>A link is not a dead string.</h1>
-        <p class="world-sub" data-copy-sub>Infrastructure you can still steer.</p>
-      </div>
-    </div>
-
-    <!-- Scroll track drives chapters -->
-    <div class="world-track" data-world-track>
-      <section class="world-chapter" data-chapter="0" id="void" style="--vh: 1.2" aria-label="Chapter 0 Threshold">
-        <div class="world-chapter-spacer"></div>
-      </section>
-      <section class="world-chapter" data-chapter="1" id="publish" style="--vh: 1" aria-label="Chapter 1 Publish">
-        <div class="world-chapter-spacer"></div>
-      </section>
-      <section class="world-chapter" data-chapter="2" id="route" style="--vh: 1.4" aria-label="Chapter 2 Route">
-        <div class="world-chapter-spacer"></div>
-      </section>
-      <section class="world-chapter" data-chapter="3" id="swap" style="--vh: 1.1" aria-label="Chapter 3 Destination swap">
-        <div class="world-chapter-spacer"></div>
-      </section>
-      <section class="world-chapter" data-chapter="4" id="signal" style="--vh: 1.1" aria-label="Chapter 4 Signal">
-        <div class="world-chapter-spacer"></div>
-      </section>
-      <section class="world-chapter" data-chapter="5" id="control" style="--vh: 1" aria-label="Chapter 5 Control">
-        <div class="world-chapter-spacer"></div>
-      </section>
-    </div>
-
-    <!-- Exit / live product handoff -->
-    <section class="world-exit section-shell" id="exit" aria-labelledby="exit-title">
-      <div class="world-exit-inner">
-        <p class="eyebrow mono reveal">WORLD / END · SAMPLE EXPERIENCE</p>
-        <div class="world-exit-brand reveal">
-          <img src="/assets/brand/tinyme-gold.webp" alt="" width="56" height="60" />
-          <div>
-            <p class="mono byline">TINYME / by ORDANI STUDIOS</p>
-            <h2 id="exit-title">Keep control.</h2>
-          </div>
-        </div>
-        <p class="world-exit-copy reveal">
-          Set the destination. Route each click. Separate people from bots.
-        </p>
-        <div class="world-exit-actions reveal">
-          <a class="btn btn-gold" href="/tinyme">Try TinyMe <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="/">Studio <span aria-hidden="true">→</span></a>
-        </div>
-        <p class="world-credit mono reveal">Motion systems · Higgsfield pipeline · Ordani Studios</p>
-      </div>
-    </section>
+  <main class="section-shell" style="padding: 48px 20px; max-width: 40ch;">
+    <p class="mono" style="color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">
+      Scroll world moved
+    </p>
+    <h1 style="font-family: var(--font-display); letter-spacing: -0.03em;">TinyMe is the world.</h1>
+    <p style="color: var(--paper-soft); line-height: 1.5;">
+      The product scroll experience is now <a href="/tinyme">/tinyme</a>.
+    </p>
+    <p style="margin-top: 20px;">
+      <a class="btn btn-gold" href="/tinyme">Open TinyMe <span aria-hidden="true">↗</span></a>
+    </p>
   </main>
-
-  <footer class="site-footer section-shell">
-    <div class="footer-top">
-      <img src="/assets/brand/ordani-full-white.webp" alt="Ordani Studios" width="170" height="30" loading="lazy" />
-      <p class="tagline">Focused products, infrastructure, and interactive systems.</p>
-    </div>
-    <nav class="footer-nav mono" aria-label="Footer navigation">
-      <a href="/">Studio</a>
-      <a href="/tinyme">TinyMe</a>
-      <a href="/world">World</a>
-      <a href="mailto:contact@ordanistudios.com">Contact</a>
-    </nav>
-    <div class="footer-bottom mono">
-      <span>© 2026 Ordani Studios</span>
-      <span>Scroll world / prototype plates</span>
-      <a href="#world-main">Back to top ↑</a>
-    </div>
-  </footer>
-
-  <script src="/app.js" defer></script>
-  <script src="/world.js" defer></script>
 </body>
 </html>

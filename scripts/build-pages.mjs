@@ -27,7 +27,7 @@ const BASE = String(RAW_BASE || "")
 const CLEAN_ROUTES = {
   tinyme: "tinyme.html",
   world: "world.html",
-  experience: "world.html",
+  experience: "tinyme.html",
   console: "console.html",
   onboarding: "onboarding.html",
   setup: "onboarding.html",

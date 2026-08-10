@@ -1842,8 +1842,31 @@ ul, ol { list-style: none; }
 }
 
 /* --- SCROLL WORLD --- */
-body[data-page="world"] { background: var(--carbon); }
-body[data-page="world"] .scroll-progress { display: none; }
+body[data-page="world"],
+body[data-page="tinyme"] { background: var(--carbon); }
+body[data-page="world"] .scroll-progress,
+body[data-page="tinyme"] .scroll-progress { display: none; }
+
+/* TinyMe product = scroll world (no long SaaS page) */
+body[data-page="tinyme"] .world-header .header-cta {
+  border-color: rgba(221, 173, 78, 0.5);
+  color: var(--gold);
+}
+body[data-page="tinyme"] .world-header .header-cta:hover {
+  border-color: var(--gold);
+  color: var(--paper);
+}
+body[data-page="tinyme"] .world-headline {
+  color: var(--paper);
+}
+body[data-page="tinyme"] .world-exit-brand h2 {
+  color: var(--gold);
+  font-size: clamp(36px, 7vw, 56px);
+  letter-spacing: -0.04em;
+}
+body[data-page="tinyme"] .world-kicker {
+  color: var(--gold-dim, #b8923a);
+}
 
 .world-header .header-cta { border-color: rgba(221, 173, 78, 0.45); }
 .world-header .header-cta:hover { border-color: var(--gold); color: var(--gold); }

@@ -2,9 +2,55 @@
   "use strict";
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isProduct = document.body?.dataset?.page === "tinyme";
 
-  // STE + stop-slop: short, direct, no binary contrast, no manifesto.
-  const CHAPTERS = [
+  // Product scroll world (TinyMe) — STE, no SaaS filler.
+  const PRODUCT_CHAPTERS = [
+    {
+      label: "TINYME / 00 — VOID",
+      kicker: "LITTLE LINK · BIG FEATURES",
+      headline: "Little link.",
+      sub: "Big features.",
+      video: null,
+    },
+    {
+      label: "TINYME / 01 — PUBLISH",
+      kicker: "01 · PUBLISH",
+      headline: "Print one address.",
+      sub: "Use it on print, QR, social.",
+      video: null,
+    },
+    {
+      label: "TINYME / 02 — ROUTE",
+      kicker: "02 · ROUTE",
+      headline: "Route each click.",
+      sub: "Device, country, schedule.",
+      video: null,
+    },
+    {
+      label: "TINYME / 03 — SWAP",
+      kicker: "03 · SWAP",
+      headline: "Change the exit.",
+      sub: "Same public address. New destination.",
+      video: null,
+    },
+    {
+      label: "TINYME / 04 — SIGNAL",
+      kicker: "04 · SIGNAL",
+      headline: "Know what clicked.",
+      sub: "People separate from bots.",
+      video: null,
+    },
+    {
+      label: "TINYME / 05 — CONTROL",
+      kicker: "05 · READY",
+      headline: "Keep control.",
+      sub: "History. Rollback. Soft-delete.",
+      video: null,
+    },
+  ];
+
+  const WORLD_CHAPTERS = [
     {
       label: "WORLD / 00 — VOID",
       kicker: "TINYME / by ORDANI STUDIOS",
@@ -49,6 +95,8 @@
     },
   ];
 
+  const CHAPTERS = isProduct ? PRODUCT_CHAPTERS : WORLD_CHAPTERS;
+
   const track = document.querySelector("[data-world-track]");
   const stage = document.querySelector("[data-world-stage]");
   if (!track || !stage) return;
@@ -72,7 +120,9 @@
     const ch = CHAPTERS[i];
     if (!ch) return;
     if (labelEl) labelEl.textContent = ch.label;
-    if (indexEl) indexEl.textContent = `${String(i + 1).padStart(2, "0")} / ${String(CHAPTERS.length).padStart(2, "0")}`;
+    if (indexEl) {
+      indexEl.textContent = `${String(i + 1).padStart(2, "0")} / ${String(CHAPTERS.length).padStart(2, "0")}`;
+    }
     if (kickerEl) kickerEl.textContent = ch.kicker;
     if (headlineEl) headlineEl.textContent = ch.headline;
     if (subEl) subEl.textContent = ch.sub;
@@ -85,7 +135,6 @@
       img.classList.toggle("is-active", id === i);
     });
 
-    // Optional video scrub when motion files exist
     if (videoEl && CHAPTERS[i]?.video && !prefersReducedMotion) {
       const src = CHAPTERS[i].video;
       if (videoEl.dataset.src !== src) {
@@ -110,11 +159,9 @@
 
     chapters.forEach((el, i) => {
       const rect = el.getBoundingClientRect();
-      // How much of chapter is "in the pin zone"
       const start = -rect.top;
       const height = Math.max(rect.height - vh, 1);
       const p = clamp(start / height, 0, 1);
-      // Prefer chapter whose center is nearest viewport center
       const mid = rect.top + rect.height / 2;
       const score = -Math.abs(mid - vh * 0.45);
       if (score > bestScore && rect.bottom > 0 && rect.top < vh) {
@@ -124,7 +171,6 @@
       }
     });
 
-    // Fallback: if track completely past, last chapter
     const trackRect = track.getBoundingClientRect();
     if (trackRect.bottom < vh * 0.3) {
       best = CHAPTERS.length - 1;
@@ -142,13 +188,11 @@
       setCopy(active);
       if (copyEl) {
         copyEl.classList.remove("is-pulse");
-        // reflow
         void copyEl.offsetWidth;
         copyEl.classList.add("is-pulse");
       }
     }
 
-    // Parallax / ken burns on active plate (subtle)
     const plate = plates.find((p) => Number(p.getAttribute("data-plate")) === active);
     if (plate && !prefersReducedMotion) {
       const scale = 1 + progress * 0.04;
@@ -160,11 +204,10 @@
       try {
         videoEl.currentTime = clamp(progress, 0, 0.999) * videoEl.duration;
       } catch {
-        /* ignore seek race */
+        /* ignore */
       }
     }
 
-    // Dim stage as we approach exit
     const exit = document.getElementById("exit");
     if (exit && stage) {
       const er = exit.getBoundingClientRect();
@@ -190,26 +233,33 @@
     btn.addEventListener("click", () => {
       const i = Number(btn.getAttribute("data-tick"));
       const el = document.querySelector(`[data-chapter="${i}"]`);
-      if (el) el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+      if (el) {
+        el.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "start",
+        });
+      }
     });
   });
 
-  // Keyboard
   window.addEventListener("keydown", (e) => {
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp" && e.key !== " ") return;
     const target = e.key === "ArrowUp" ? active - 1 : active + 1;
     if (target < 0 || target >= CHAPTERS.length) return;
     e.preventDefault();
     const el = document.querySelector(`[data-chapter="${target}"]`);
-    if (el) el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    if (el) {
+      el.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    }
   });
 
-  // Init
   setPlate(0);
   setCopy(0);
   apply();
 
-  // Preload remaining plates
   plates.forEach((img, i) => {
     if (i === 0) return;
     const warm = new Image();

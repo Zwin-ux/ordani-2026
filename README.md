@@ -21,10 +21,10 @@ Static Pages demo ships marketing, world, onboarding UI, console shell, and the 
 ```
 ├── public/              Studio + TinyMe static site
 │   ├── index.html       Ordani home
-│   ├── tinyme.html      Product page
+│   ├── tinyme.html      Product scroll world → Make a link
 │   ├── onboarding.html  First-link flow
 │   ├── console.html     Operator console
-│   ├── world.html       Scroll world
+│   ├── world.html       Redirects to /tinyme
 │   └── showcase.html    Screens / gifs gallery
 ├── backend/             Go + Fiber + Postgres API
 ├── docs/                PRD, setup, Pages guide
