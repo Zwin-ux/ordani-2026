@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TinyMe private beta operator console. Live API management for invited operators." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>TinyMe Console — Operator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="console">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="op-header" data-header>
+    <a class="tinyme-brand" href="/tinyme" aria-label="TinyMe home">
+      <img src="/assets/brand/tinyme-gold.webp" alt="" width="30" height="32" />
+      <strong>TinyMe</strong>
+      <span class="by mono">Console</span>
+    </a>
+    <p class="op-label mono">Private beta · operator · live API</p>
+    <nav class="op-header-nav mono" aria-label="Console navigation">
+      <a href="/onboarding">Setup</a>
+      <a href="/tinyme">Product</a>
+      <a href="/">Studio</a>
+    </nav>
+  </header>
+
+  <main id="main" class="op-main">
+    <!-- 1. Config -->
+    <section class="op-config" aria-labelledby="config-title">
+      <div class="op-config-head">
+        <div class="op-step">
+          <span class="op-step-num mono" aria-hidden="true">01</span>
+          <h1 id="config-title">API connection</h1>
+        </div>
+        <div class="op-config-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="health-btn">Health check</button>
+          <span class="op-health mono" id="health-status" aria-live="polite"></span>
+        </div>
+      </div>
+      <form class="op-config-form" id="config-form" autocomplete="off">
+        <label class="op-field">
+          <span class="mono">API base URL</span>
+          <input
+            type="url"
+            id="api-base"
+            name="apiBase"
+            value="http://localhost:8080"
+            placeholder="http://localhost:8080"
+            required
+            spellcheck="false"
+          />
+        </label>
+        <label class="op-field">
+          <span class="mono">API key</span>
+          <input
+            type="password"
+            id="api-key"
+            name="apiKey"
+            placeholder="Bearer token · session only"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+        <button type="submit" class="btn btn-gold btn-sm">Save</button>
+      </form>
+      <p class="op-config-note mono" id="config-saved" aria-live="polite"></p>
+    </section>
+
+    <div class="op-banner" id="error-banner" role="alert" hidden></div>
+
+    <div class="op-layout">
+      <!-- 2–3. Create + list -->
+      <div class="op-col">
+        <section class="op-panel" aria-labelledby="create-title">
+          <header class="op-panel-head">
+            <div class="op-step">
+              <span class="op-step-num mono" aria-hidden="true">02</span>
+              <h2 id="create-title">Create link</h2>
+            </div>
+            <span class="mono op-panel-meta">POST /api/links</span>
+          </header>
+          <form class="op-form" id="create-form">
+            <label class="op-field">
+              <span class="mono">Destination URL</span>
+              <input
+                type="url"
+                id="create-dest"
+                name="destination"
+                required
+                placeholder="https://example.com/campaign"
+                spellcheck="false"
+              />
+            </label>
+            <div class="op-form-row">
+              <label class="op-field">
+                <span class="mono">Slug <em>(optional)</em></span>
+                <input
+                  type="text"
+                  id="create-slug"
+                  name="slug"
+                  pattern="[a-zA-Z0-9_-]*"
+                  placeholder="auto if empty"
+                  spellcheck="false"
+                />
+              </label>
+              <label class="op-field">
+                <span class="mono">Domain <em>(optional)</em></span>
+                <input
+                  type="text"
+                  id="create-domain"
+                  name="domain"
+                  placeholder="default from API"
+                  spellcheck="false"
+                />
+              </label>
+            </div>
+            <div class="op-form-foot">
+              <button type="submit" class="btn btn-gold btn-sm" id="create-btn">Create link</button>
+              <p class="op-form-msg mono" id="create-msg" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="op-panel" aria-labelledby="list-title">
+          <header class="op-panel-head">
+            <div class="op-step">
+              <span class="op-step-num mono" aria-hidden="true">03</span>
+              <h2 id="list-title">Links</h2>
+            </div>
+            <div class="op-panel-tools">
+              <span class="mono op-panel-meta" id="list-meta">GET /api/links</span>
+              <button type="button" class="btn btn-ghost btn-sm" id="refresh-btn">Refresh</button>
+            </div>
+          </header>
+          <div class="op-table-wrap">
+            <table class="op-table" id="links-table">
+              <thead>
+                <tr>
+                  <th scope="col">Slug</th>
+                  <th scope="col">Domain</th>
+                  <th scope="col">Clicks</th>
+                  <th scope="col">Active</th>
+                </tr>
+              </thead>
+              <tbody id="links-body">
+                <tr class="op-empty-row">
+                  <td colspan="4">
+                    <div class="op-empty">
+                      <strong>No links loaded</strong>
+                      <span>Save API connection above, then refresh. Create a link if the list is empty.</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- 4. Detail -->
+      <aside class="op-col op-detail" aria-labelledby="detail-title">
+        <section class="op-panel op-panel-detail" id="detail-panel">
+          <header class="op-panel-head">
+            <div class="op-step">
+              <span class="op-step-num mono" aria-hidden="true">04</span>
+              <h2 id="detail-title">Link detail</h2>
+            </div>
+            <span class="mono op-panel-meta" id="detail-meta">Select a link</span>
+          </header>
+
+          <div id="detail-empty" class="op-detail-empty">
+            <p class="op-empty">
+              <strong>Nothing selected</strong>
+              <span>Pick a row in Links to load destinations, rules, and the public short address from the live API.</span>
+            </p>
+          </div>
+
+          <div id="detail-body" hidden>
+            <div class="op-short-url">
+              <span class="mono op-field-label">Public short address</span>
+              <code id="detail-short" class="op-short-code"></code>
+              <p class="op-host-note mono">
+                Redirect resolves by request Host. Hit the API host that matches this domain
+                (or set Host header when testing). Short form:
+                <span id="detail-host-form">{domain}/{slug}</span>
+              </p>
+            </div>
+
+            <dl class="op-facts" id="detail-facts">
+              <div>
+                <dt class="mono">ID</dt>
+                <dd id="fact-id">—</dd>
+              </div>
+              <div>
+                <dt class="mono">Clicks</dt>
+                <dd id="fact-clicks">—</dd>
+              </div>
+              <div>
+                <dt class="mono">Active</dt>
+                <dd id="fact-active">—</dd>
+              </div>
+            </dl>
+
+            <div class="op-block" id="analytics-block">
+              <div class="op-block-head">
+                <h3 class="mono">Analytics</h3>
+                <span class="mono op-panel-meta" id="analytics-meta">GET …/analytics</span>
+              </div>
+              <dl class="op-facts op-facts-analytics" id="analytics-facts" aria-live="polite">
+                <div>
+                  <dt class="mono">Total</dt>
+                  <dd id="stat-total">—</dd>
+                </div>
+                <div>
+                  <dt class="mono">Human</dt>
+                  <dd id="stat-human">—</dd>
+                </div>
+                <div>
+                  <dt class="mono">Bot</dt>
+                  <dd id="stat-bot">—</dd>
+                </div>
+              </dl>
+              <p class="op-muted mono" id="analytics-note">Live summary · human vs bot · last 30 days series</p>
+            </div>
+
+            <div class="op-block">
+              <h3 class="mono">Destinations</h3>
+              <ul class="op-dest-list" id="dest-list"></ul>
+              <form class="op-form op-form-compact" id="add-dest-form">
+                <label class="op-field">
+                  <span class="mono">Add destination URL</span>
+                  <input
+                    type="url"
+                    id="add-dest-url"
+                    name="url"
+                    required
+                    placeholder="https://example.com/mobile"
+                    spellcheck="false"
+                  />
+                </label>
+                <div class="op-form-foot">
+                  <button type="submit" class="btn btn-ghost btn-sm" id="add-dest-btn">Add destination</button>
+                  <p class="op-form-msg mono" id="add-dest-msg" aria-live="polite"></p>
+                </div>
+              </form>
+            </div>
+
+            <div class="op-block">
+              <h3 class="mono">Swap primary destination</h3>
+              <form class="op-form op-form-compact" id="swap-form">
+                <input type="hidden" id="swap-dest-id" name="destId" />
+                <label class="op-field">
+                  <span class="mono">New URL</span>
+                  <input
+                    type="url"
+                    id="swap-url"
+                    name="url"
+                    required
+                    placeholder="https://example.com/new"
+                    spellcheck="false"
+                  />
+                </label>
+                <div class="op-form-foot">
+                  <button type="submit" class="btn btn-gold btn-sm" id="swap-btn">Patch destination</button>
+                  <p class="op-form-msg mono" id="swap-msg" aria-live="polite"></p>
+                </div>
+              </form>
+            </div>
+
+            <div class="op-block" id="history-block">
+              <div class="op-block-head">
+                <h3 class="mono">Destination history</h3>
+                <div class="op-panel-tools">
+                  <button type="button" class="btn btn-ghost btn-sm" id="history-refresh-btn">Refresh</button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="rollback-btn" disabled>Rollback last</button>
+                </div>
+              </div>
+              <p class="op-muted mono" id="history-meta" aria-live="polite">Primary destination changes</p>
+              <ul class="op-history-list" id="history-list"></ul>
+              <p class="op-form-msg mono" id="history-msg" aria-live="polite"></p>
+            </div>
+
+            <div class="op-block">
+              <h3 class="mono">Rules</h3>
+              <ul class="op-rule-list" id="rule-list"></ul>
+              <form class="op-form op-form-compact" id="rule-form">
+                <div class="op-form-row">
+                  <label class="op-field">
+                    <span class="mono">Type</span>
+                    <select id="rule-type" name="type" required>
+                      <option value="device">device</option>
+                      <option value="country">country</option>
+                      <option value="referrer">referrer</option>
+                      <option value="schedule">schedule (UTC hour)</option>
+                    </select>
+                  </label>
+                  <label class="op-field">
+                    <span class="mono">Priority</span>
+                    <input type="number" id="rule-priority" name="priority" value="10" min="0" max="999" />
+                  </label>
+                </div>
+                <label class="op-field">
+                  <span class="mono">Match <em id="rule-match-hint">(mobile, desktop, tablet)</em></span>
+                  <input
+                    type="text"
+                    id="rule-match"
+                    name="match"
+                    required
+                    placeholder="mobile"
+                    spellcheck="false"
+                  />
+                </label>
+                <label class="op-field">
+                  <span class="mono">Destination</span>
+                  <select id="rule-dest" name="destination_id" required>
+                    <option value="">Select destination…</option>
+                  </select>
+                </label>
+                <div class="op-form-foot">
+                  <button type="submit" class="btn btn-gold btn-sm" id="rule-btn">Add rule</button>
+                  <p class="op-form-msg mono" id="rule-msg" aria-live="polite"></p>
+                </div>
+              </form>
+            </div>
+
+            <div class="op-block op-danger">
+              <h3 class="mono">Deactivate</h3>
+              <p class="op-muted">Soft-delete. Public slug stops redirecting. Does not hard-erase events.</p>
+              <div class="op-form-foot">
+                <button type="button" class="btn btn-ghost btn-sm op-btn-danger" id="delete-btn">Soft-delete link</button>
+                <p class="op-form-msg mono" id="delete-msg" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="op-footer mono">
+    <span>© 2026 Ordani Studios</span>
+    <span>Single-operator · no multi-user auth</span>
+    <a href="/tinyme">Product page</a>
+  </footer>
+
+  <script src="/domain-lock.js" defer></script>
+  <script src="/console.js" defer></script>
+</body>
+</html>

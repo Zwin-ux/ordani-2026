@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TinyMe / Ordani static showcase — screenshots, gifs, demo frames." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>Showcase — Ordani / TinyMe</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="showcase">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="/" aria-label="Ordani Studios home">
+      <img class="brand-mark" src="/assets/brand/ordani-single-orange.png" alt="" width="32" height="32" />
+      <span class="brand-word">Ordani</span>
+    </a>
+    <nav class="desktop-nav mono" aria-label="Primary">
+      <a href="/world">World</a>
+      <a href="/tinyme">TinyMe</a>
+      <a href="/showcase" aria-current="page">Showcase</a>
+      <a href="/onboarding">Onboarding</a>
+    </nav>
+  </header>
+
+  <main id="main" class="section-shell" style="padding: 48px 20px 80px; max-width: 960px; margin: 0 auto;">
+    <p class="mono" style="color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 10px; margin: 0 0 12px;">
+      Static demo · GitHub Pages · no live short links
+    </p>
+    <h1 style="font-family: var(--font-display); font-size: clamp(28px, 5vw, 42px); letter-spacing: -0.03em; margin: 0 0 12px;">
+      Screenshots &amp; motion
+    </h1>
+    <p style="color: var(--paper-soft); max-width: 48ch; line-height: 1.55; margin: 0 0 28px;">
+      Drop PNG / WebP / GIF / MP4 into <code class="mono">public/assets/showcase/</code>, push to main,
+      and they show here. Short-link API is not on Pages — create triggers the domain STOP halt.
+    </p>
+
+    <div class="sc-grid" id="sc-grid" aria-live="polite">
+      <!-- Filled by showcase.js from manifest + known files -->
+    </div>
+
+    <section style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line);">
+      <h2 class="mono" style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 400;">
+        Live demo routes
+      </h2>
+      <ul class="mono" style="list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; font-size: 13px;">
+        <li><a href="/">Studio home</a></li>
+        <li><a href="/tinyme">TinyMe product</a></li>
+        <li><a href="/world">Scroll world</a></li>
+        <li><a href="/onboarding">Onboarding</a></li>
+        <li><a href="/console?skip=1">Console (UI only)</a></li>
+        <li><a href="/onboarding?halt=1">Domain STOP halt</a></li>
+      </ul>
+    </section>
+
+    <p class="mono" style="margin-top: 32px; color: #5c564c; font-size: 11px;">
+      made by the 🐐 · static only
+    </p>
+  </main>
+
+  <style>
+    .sc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .sc-card {
+      border: 1px solid var(--line);
+      background: var(--surface, #12110e);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .sc-card img,
+    .sc-card video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #0a0908;
+    }
+    .sc-card figcaption {
+      padding: 10px 12px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .sc-empty {
+      grid-column: 1 / -1;
+      padding: 28px;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  </style>
+  <script src="/showcase.js" defer></script>
+</body>
+</html>

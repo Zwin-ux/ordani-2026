@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Ordani Studios builds focused digital products, infrastructure, and interactive systems for the modern web." />
+  <meta name="description" content="Useful systems made by real people. Ordani builds products for real people, for real problems." />
   <meta name="theme-color" content="#0b0b0b" />
-  <title>Ordani Studios — Small tools. Large reach.</title>
+  <title>Ordani Studios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="/styles.css" />
@@ -15,15 +15,17 @@
 
   <header class="site-header" data-header>
     <a class="brand" href="/" aria-label="Ordani Studios home">
-      <img src="/assets/brand/ordani-full-white.webp" alt="Ordani Studios" width="170" height="30" />
+      <img class="brand-mark" src="/assets/brand/ordani-single-orange.png" alt="" width="32" height="32" />
+      <span class="brand-word">Ordani</span>
     </a>
     <nav class="desktop-nav" aria-label="Primary navigation">
       <a href="#work">Work</a>
-      <a href="#principles">Principles</a>
+      <a href="/world">World</a>
+      <a href="/showcase">Showcase</a>
       <a href="#studio">Studio</a>
       <a href="/tinyme">TinyMe</a>
     </nav>
-    <a class="header-cta" href="mailto:contact@ordanistudios.com">Contact <span aria-hidden="true">↗</span></a>
+    <a class="header-cta" href="#contact">Contact <span aria-hidden="true">↗</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
       <span>Menu</span>
       <span class="glyph" aria-hidden="true">+</span>
@@ -32,249 +34,200 @@
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden data-mobile-nav>
     <a href="#work">Work</a>
-    <a href="#principles">Principles</a>
+    <a href="/world">World</a>
+    <a href="/showcase">Showcase</a>
     <a href="#studio">Studio</a>
     <a href="/tinyme">TinyMe</a>
     <a href="mailto:contact@ordanistudios.com">Contact</a>
   </nav>
 
   <main id="main">
-    <section class="hero section-shell" aria-labelledby="hero-title">
-      <div class="hero-meta mono reveal">
-        <span>Independent digital product studio</span>
-        <span>California / Internet</span>
-        <span>Edition 2026</span>
+    <section class="hero" aria-labelledby="hero-title" data-hero>
+      <div class="hero-space" aria-hidden="true" data-hero-space>
+        <div class="hero-space-depth hero-space-depth-far" data-parallax="0.35">
+          <img
+            class="hero-space-poster"
+            src="/assets/hero/space-poster.webp"
+            alt=""
+            width="2688"
+            height="1520"
+            fetchpriority="high"
+          />
+          <video
+            class="hero-space-video"
+            data-hero-video
+            muted
+            loop
+            playsinline
+            autoplay
+            preload="metadata"
+            poster="/assets/hero/space-poster.webp"
+          >
+            <source src="/assets/hero/space-soft.webm" type="video/webm" />
+            <source src="/assets/hero/space-soft.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="hero-space-depth hero-space-depth-near" data-parallax="0.7"></div>
+        <div class="hero-space-veil" data-parallax="0.2"></div>
       </div>
-
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="hero-eyebrow reveal">Ordani Studios / product systems</p>
+      <div class="hero-grid hero-grid-single section-shell">
+        <div class="hero-copy" data-parallax="0.12">
           <h1 id="hero-title" class="hero-title" data-split>
-            <span>Small tools.</span>
-            <span class="accent">Large reach.</span>
+            <span class="accent">Useful systems</span>
+            <span>made by real people</span>
           </h1>
           <p class="hero-statement reveal">
-            We design and operate focused digital products, infrastructure, and interactive systems for the modern web.
+            Ordani builds products for real people, for real problems.
           </p>
-          <div class="hero-actions reveal">
-            <a class="btn btn-primary" href="/tinyme">Explore TinyMe <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="#work">View selected work <span aria-hidden="true">↓</span></a>
-          </div>
         </div>
-
-        <div class="route-stage reveal" aria-label="Animated route from a public link to its destination">
-          <svg class="route-map" viewBox="0 0 680 540" role="img" aria-labelledby="route-title route-desc">
-            <title id="route-title">A public link moving through Ordani infrastructure</title>
-            <desc id="route-desc">A line travels through nodes representing a link, routing rule, analytics event, and final destination.</desc>
-            <path class="route-grid" d="M28 120H652M28 270H652M28 420H652M170 30V510M340 30V510M510 30V510" />
-            <path class="route-path route-path-glow" d="M54 438 C128 438 115 321 202 321 C291 321 251 104 358 104 C462 104 430 357 532 357 C592 357 590 210 630 210" />
-            <path class="route-path route-path-line" d="M54 438 C128 438 115 321 202 321 C291 321 251 104 358 104 C462 104 430 357 532 357 C592 357 590 210 630 210" />
-            <circle class="route-node" cx="54" cy="438" r="7" />
-            <circle class="route-node" cx="202" cy="321" r="7" />
-            <circle class="route-node" cx="358" cy="104" r="7" />
-            <circle class="route-node" cx="532" cy="357" r="7" />
-            <circle class="route-node route-node-end" cx="630" cy="210" r="10" />
-            <circle class="route-pulse" r="6">
-              <animateMotion dur="6s" repeatCount="indefinite" path="M54 438 C128 438 115 321 202 321 C291 321 251 104 358 104 C462 104 430 357 532 357 C592 357 590 210 630 210" />
-            </circle>
-          </svg>
-          <div class="route-label route-label-a mono">Public link<br><strong>tinyme.cc/launch</strong></div>
-          <div class="route-label route-label-b mono">Rule<br><strong>US / Mobile</strong></div>
-          <div class="route-label route-label-c mono">Event<br><strong>18ms / Human</strong></div>
-          <div class="route-label route-label-d mono">Destination<br><strong>Product / V2</strong></div>
-          <div class="route-caption mono"><span class="live-dot"></span> System narrative / live prototype</div>
-        </div>
-      </div>
-
-      <div class="hero-index mono" aria-hidden="true">
-        <span>01</span><span>Ordani builds products with an obvious reason to exist.</span><span>Scroll to inspect</span>
-      </div>
-    </section>
-
-    <section class="manifesto section-shell" id="principles" aria-labelledby="manifesto-title">
-      <div class="section-label mono reveal"><span>02</span><span>Studio declaration</span></div>
-      <p class="manifesto-text" data-split id="manifesto-title">
-        <span class="line">We are not trying to look like a studio that builds everything.</span>
-        <span class="line muted">We are building a studio that proves what it can do through products people can actually use.</span>
-      </p>
-      <div class="manifesto-note reveal">
-        <span class="label mono">Position / 2026</span>
-        <p>TinyMe becomes the flagship proof. Datapad remains evidence of operational software. New work earns its place through a release, a user, or a measurable result.</p>
       </div>
     </section>
 
     <section class="work section-shell" id="work" aria-labelledby="work-title">
-      <div class="section-label mono reveal"><span>03</span><span>Selected systems</span></div>
       <div class="work-header reveal">
-        <h2 id="work-title">Products, not portfolio filler.</h2>
-        <p>Each project is framed by the problem it controls, the system behind it, and its honest current state.</p>
+        <h2 id="work-title">Current products</h2>
       </div>
 
       <div class="project-grid">
         <article class="flagship-card reveal" data-tilt>
           <div class="flagship-body">
-            <div class="project-meta mono"><span>01 / Flagship</span><span>Product direction</span></div>
             <div class="flagship-brand">
               <img src="/assets/brand/tinyme-gold.webp" alt="" width="52" height="56" />
               <span>TinyMe</span>
             </div>
-            <h3>Public links you can still control.</h3>
-            <p>A durable control plane for links already printed, posted, shared, embedded, and distributed.</p>
+            <h3>One public link. Control after print.</h3>
+            <p>Set the destination. Route each click. Separate people from bots.</p>
             <ul class="feature-list mono" aria-label="TinyMe product capabilities">
               <li>Editable destinations</li>
               <li>Routing rules</li>
-              <li>Privacy-aware analytics</li>
+              <li>Human and bot events</li>
               <li>Custom domains</li>
             </ul>
-            <a class="btn btn-gold" href="/tinyme">Open product direction <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-gold" href="/tinyme">Open TinyMe <span aria-hidden="true">↗</span></a>
           </div>
 
-          <div class="mini-dashboard" aria-label="Sample TinyMe operations dashboard">
-            <div class="dashboard-bar mono">
-              <span class="status"><span class="live-dot"></span> Sample workspace</span>
-              <span>Last 7 days</span>
-            </div>
-            <div class="dashboard-kpis">
-              <div>
-                <span class="label mono">Human clicks</span>
-                <strong data-counter="2840">0</strong>
-                <small>Sample data</small>
-              </div>
-              <div>
-                <span class="label mono">Est. visitors</span>
-                <strong data-counter="1964">0</strong>
-                <small>Sample data</small>
-              </div>
-              <div>
-                <span class="label mono">Bot traffic</span>
-                <strong data-counter="312">0</strong>
-                <small>Separated</small>
-              </div>
-            </div>
-            <div class="chart" aria-label="Sample click activity chart">
-              <div class="chart-grid"></div>
-              <svg viewBox="0 0 600 210" preserveAspectRatio="none" aria-hidden="true">
-                <path class="chart-area" d="M0,180 C45,170 52,130 96,145 C142,161 165,86 216,105 C267,124 276,63 329,75 C386,88 395,25 452,44 C507,61 534,18 600,28 L600,210 L0,210 Z" />
-                <path class="chart-line" d="M0,180 C45,170 52,130 96,145 C142,161 165,86 216,105 C267,124 276,63 329,75 C386,88 395,25 452,44 C507,61 534,18 600,28" />
-              </svg>
-            </div>
-            <div class="link-row active" data-link-row>
-              <span class="link-icon">↗</span>
-              <div><strong>tinyme.cc/launch</strong><small>Destination updated 2h ago</small></div>
-              <span class="clicks mono">1,284</span>
-            </div>
-            <div class="link-row" data-link-row>
-              <span class="link-icon">↗</span>
-              <div><strong>tinyme.cc/studio</strong><small>Healthy destination</small></div>
-              <span class="clicks mono">956</span>
-            </div>
-            <div class="link-row" data-link-row>
-              <span class="link-icon">↗</span>
-              <div><strong>tinyme.cc/event</strong><small>Scheduled route change</small></div>
-              <span class="clicks mono">600</span>
-            </div>
+          <div class="hero-still reveal" aria-hidden="true">
+            <img src="/assets/world/ch-00/plate.webp" alt="" width="960" height="540" loading="lazy" />
           </div>
         </article>
 
         <article class="project-row reveal">
-          <div class="project-index mono">02</div>
           <div class="project-visual project-visual-datapad">
             <div class="datapad-orbit" aria-hidden="true"></div>
-            <img src="/assets/projects/datapad.webp" alt="Datapad handheld interface artwork" width="180" height="180" loading="lazy" />
+            <img src="/assets/projects/datapad.webp" alt="Datapad" width="180" height="180" loading="lazy" />
           </div>
           <div class="project-copy">
-            <div class="project-meta mono"><span>Active</span><span>Community operations</span></div>
             <h3>Datapad</h3>
-            <p>A configurable Discord operations bot connecting roster management, moderation, permissions, and Google Sheets workflows.</p>
-            <div class="project-tags mono"><span>Discord.js</span><span>Automation</span><span>Roster systems</span></div>
+            <p>Discord bot for roster work, moderation, and Sheets tasks.</p>
           </div>
           <span class="project-arrow" aria-hidden="true">↗</span>
         </article>
 
-        <article class="project-row reveal">
-          <div class="project-index mono">03</div>
+        <article class="project-row reveal research-row">
           <div class="project-visual research-visual" aria-hidden="true">
-            <div class="research-grid"></div>
-            <span>R&D</span>
+            <div class="research-stage">
+              <div class="research-orbit research-orbit-a">
+                <span class="research-spark research-spark-1"></span>
+              </div>
+              <div class="research-orbit research-orbit-b">
+                <span class="research-spark research-spark-2"></span>
+              </div>
+              <div class="research-orbit research-orbit-c">
+                <span class="research-spark research-spark-3"></span>
+              </div>
+              <div class="research-teeth"></div>
+              <div class="research-gear">
+                <img src="/assets/brand/ordani-single-orange.png" alt="" width="120" height="120" />
+              </div>
+            </div>
           </div>
           <div class="project-copy">
-            <div class="project-meta mono"><span>Exploration</span><span>Interactive systems</span></div>
             <h3>Ordani Research</h3>
-            <p>Small experiments around infrastructure, multiplayer utilities, product mechanics, and interfaces that make complex systems legible.</p>
-            <div class="project-tags mono"><span>Prototypes</span><span>Systems design</span><span>Release notes</span></div>
           </div>
           <span class="project-arrow" aria-hidden="true">↗</span>
         </article>
-      </div>
-    </section>
 
-    <section class="principles section-shell" aria-labelledby="principles-title">
-      <div class="section-label mono reveal"><span>04</span><span>Operating principles</span></div>
-      <h2 id="principles-title" class="reveal">How the studio earns trust.</h2>
-      <ol class="principle-list">
-        <li class="principle-item reveal">
-          <span class="num mono">01</span>
-          <strong>Build products with an obvious reason to exist.</strong>
-          <p>No vague category soup. The problem should fit in one sentence.</p>
-        </li>
-        <li class="principle-item reveal">
-          <span class="num mono">02</span>
-          <strong>Use motion to explain the system.</strong>
-          <p>Routes, events, and changes are animated because movement is part of the product.</p>
-        </li>
-        <li class="principle-item reveal">
-          <span class="num mono">03</span>
-          <strong>Publish evidence, not inflated metrics.</strong>
-          <p>Real releases, real uptime, real use cases, and sample data labeled as sample data.</p>
-        </li>
-        <li class="principle-item reveal">
-          <span class="num mono">04</span>
-          <strong>Keep infrastructure invisible until it matters.</strong>
-          <p>The product stays simple, while the reliability story remains inspectable.</p>
-        </li>
-      </ol>
+        <a class="world-teaser reveal" href="/world" aria-label="Open the scroll world">
+          <div class="world-teaser-copy">
+            <h3>Scroll world</h3>
+            <p>Publish, route, swap destination, read events.</p>
+            <span class="btn btn-primary">Open world <span aria-hidden="true">↗</span></span>
+          </div>
+          <div class="world-teaser-visual">
+            <img src="/assets/world/ch-00/plate.webp" alt="TinyMe mark on a dark plinth" width="960" height="540" loading="lazy" />
+          </div>
+        </a>
+      </div>
     </section>
 
     <section class="studio section-shell" id="studio" aria-labelledby="studio-title">
-      <div class="section-label mono reveal"><span>05</span><span>The studio</span></div>
       <div class="studio-grid">
         <div class="studio-copy reveal">
-          <h2 id="studio-title">A small studio should feel focused, not unfinished.</h2>
-          <p>Ordani presents the team as operators behind specific products. Titles matter less than clear ownership: product direction, engineering, and public communication.</p>
-          <a class="text-link" href="mailto:contact@ordanistudios.com">Start a conversation <span aria-hidden="true">↗</span></a>
+          <h2 id="studio-title">Meet the team</h2>
         </div>
-        <div class="team-grid reveal" aria-label="Ordani leadership">
+        <div class="team-grid reveal" aria-label="Ordani team">
           <figure class="team-card">
-            <img src="/assets/team/azara.webp" alt="Azara — product direction" width="256" height="256" loading="lazy" />
+            <div class="team-media">
+              <img src="/assets/team/azara-hq.webp" alt="Azara" width="256" height="256" loading="lazy" />
+              <video class="team-video" data-team-video muted loop playsinline autoplay preload="metadata" poster="/assets/team/azara-hq.webp">
+                <source src="/assets/team/azara-soft.webm" type="video/webm" />
+                <source src="/assets/team/azara-soft.mp4" type="video/mp4" />
+              </video>
+            </div>
             <figcaption>
               <strong>Azara</strong>
               <span class="role">Product direction</span>
+              <div class="team-links mono">
+                <a href="https://github.com/Azaraunknown/" rel="noreferrer" target="_blank">GitHub</a>
+                <a href="https://discord.com/users/256218262055026698" rel="noreferrer" target="_blank">Discord</a>
+              </div>
             </figcaption>
           </figure>
           <figure class="team-card">
-            <img src="/assets/team/tundra.webp" alt="Tundra — engineering" width="420" height="420" loading="lazy" />
+            <div class="team-media">
+              <img src="/assets/team/tundra-hq.webp" alt="Tundra" width="420" height="420" loading="lazy" />
+              <video class="team-video" data-team-video muted loop playsinline autoplay preload="metadata" poster="/assets/team/tundra-hq.webp">
+                <source src="/assets/team/tundra-soft.webm" type="video/webm" />
+                <source src="/assets/team/tundra-soft.mp4" type="video/mp4" />
+              </video>
+            </div>
             <figcaption>
               <strong>Tundra</strong>
               <span class="role">Engineering</span>
+              <div class="team-links mono">
+                <a href="https://github.com/Tundra8946" rel="noreferrer" target="_blank">GitHub</a>
+                <a href="https://discord.com/users/149692366419263488" rel="noreferrer" target="_blank">Discord</a>
+              </div>
             </figcaption>
           </figure>
           <figure class="team-card">
-            <img src="/assets/team/abel.webp" alt="Abel — public operations" width="360" height="480" loading="lazy" />
+            <div class="team-media">
+              <img src="/assets/team/abel-hq.webp" alt="Abel" width="360" height="480" loading="lazy" />
+            </div>
             <figcaption>
               <strong>Abel</strong>
               <span class="role">Public operations</span>
+              <div class="team-links mono">
+                <a href="https://discord.com/users/294633875093585921" rel="noreferrer" target="_blank">Discord</a>
+              </div>
             </figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="cta section-shell">
-      <p class="eyebrow reveal">Ordani Studios / next release</p>
-      <h2 class="reveal">Build something worth putting into the world.</h2>
+    <section class="cta section-shell" id="contact">
+      <h2 class="reveal">Need a product built?</h2>
+      <p class="cta-note reveal">Email <a href="mailto:contact@ordanistudios.com">contact@ordanistudios.com</a> or join Discord.</p>
       <div class="cta-actions reveal">
-        <a class="btn btn-primary" href="mailto:contact@ordanistudios.com">Start a project <span aria-hidden="true">↗</span></a>
-        <a class="btn btn-ghost" href="/tinyme">Open TinyMe <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-primary" href="mailto:contact@ordanistudios.com">Email <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost" href="https://tinyme.cc/discord" rel="noreferrer" target="_blank">Discord <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="contact-social mono reveal">
+        <a href="https://tinyme.cc/github" rel="noreferrer" target="_blank">GitHub</a>
+        <a href="https://tinyme.cc/x" rel="noreferrer" target="_blank">X</a>
+        <a href="https://tinyme.cc/instagram" rel="noreferrer" target="_blank">Instagram</a>
+        <a href="https://tinyme.cc/youtube" rel="noreferrer" target="_blank">YouTube</a>
       </div>
     </section>
   </main>
@@ -282,17 +235,18 @@
   <footer class="site-footer section-shell">
     <div class="footer-top">
       <img src="/assets/brand/ordani-full-white.webp" alt="Ordani Studios" width="170" height="30" loading="lazy" />
-      <p class="tagline">Focused products, infrastructure, and interactive systems.</p>
     </div>
     <nav class="footer-nav mono" aria-label="Footer navigation">
       <a href="#work">Work</a>
+      <a href="/world">World</a>
       <a href="/tinyme">TinyMe</a>
-      <a href="mailto:contact@ordanistudios.com">Contact</a>
-      <a href="https://ordanistudios.com/" rel="noreferrer">Current site ↗</a>
+      <a class="op-console-link" href="/console">Console</a>
+      <a href="mailto:contact@ordanistudios.com">Email</a>
+      <a href="https://tinyme.cc/discord" rel="noreferrer" target="_blank">Discord</a>
     </nav>
     <div class="footer-bottom mono">
       <span>© 2026 Ordani Studios</span>
-      <span>Prototype / sample data labeled</span>
+      <a href="mailto:contact@ordanistudios.com">contact@ordanistudios.com</a>
       <a href="#main">Back to top ↑</a>
     </div>
   </footer>

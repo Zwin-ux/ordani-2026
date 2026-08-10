@@ -27,10 +27,30 @@ Product studio site and link operations backend.
 **Frontend** (no install required):
 
 ```bash
-node scripts/server.mjs
-# → http://localhost:4173
+npm start
+# → http://localhost:4173/
+# → http://localhost:4173/world
 # → http://localhost:4173/tinyme
+npm run check
 ```
+
+Production notes: `docs/PRODUCTION.md` · Scroll world bible: `docs/SCROLL-WORLD-SHOT-BIBLE.md`
+
+## GitHub Pages (static demo)
+
+Screenshots, gifs, marketing UI, onboarding/console shells, domain STOP halt.
+
+```bash
+npm run pages:build     # → dist/ with /ordani-2026 base path
+npm run pages:preview   # build + serve dist locally
+```
+
+- Live (after first Actions deploy): https://zwin-ux.github.io/ordani-2026/
+- Showcase gallery: `/showcase` — drop media in `public/assets/showcase/` + edit `manifest.json`
+- Setup: **Settings → Pages → Source: GitHub Actions** (workflow: `.github/workflows/pages.yml`)
+- Full guide: `docs/GITHUB-PAGES.md`
+
+**Not on Pages:** live short-link API / Postgres. Create → SYSTEM HALT until domain is locked.
 
 **Backend** (requires Go + PostgreSQL):
 

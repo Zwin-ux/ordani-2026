@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="TinyMe: short links with destination control and click tracking." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>TinyMe — Create a short link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="onboarding" data-ob-chapter="void" data-ob-step="0">
+  <a class="skip-link" href="#ob-main">Skip to content</a>
+
+  <aside class="ob-world" data-ob-world aria-hidden="true">
+    <div class="ob-world-stage" data-ob-stage>
+      <img class="ob-world-plate is-active" data-plate="void" src="/assets/onboarding/world/ob-void.webp" alt="" width="874" height="1168" decoding="async" />
+      <img class="ob-world-plate" data-plate="print" src="/assets/onboarding/world/ob-print.webp" alt="" width="874" height="1168" decoding="async" />
+      <img class="ob-world-plate" data-plate="qr" src="/assets/onboarding/world/ob-qr.webp" alt="" width="874" height="1168" decoding="async" />
+      <img class="ob-world-plate" data-plate="social" src="/assets/onboarding/world/ob-social.webp" alt="" width="874" height="1168" decoding="async" />
+      <img class="ob-world-plate" data-plate="swap" src="/assets/onboarding/world/ob-swap.webp" alt="" width="874" height="1168" decoding="async" />
+      <video
+        class="ob-world-video"
+        data-ob-world-video
+        muted
+        playsinline
+        loop
+        preload="none"
+        poster="/assets/onboarding/world/ob-print.webp"
+        hidden
+      >
+        <source data-ob-world-source type="video/mp4" />
+      </video>
+      <div class="ob-world-veil"></div>
+    </div>
+  </aside>
+
+  <div class="ob-frame">
+    <header class="ob-top">
+      <button type="button" class="ob-back" id="ob-back" hidden aria-label="Back">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <a class="ob-brand" href="/tinyme" aria-label="TinyMe product">
+        <img src="/assets/brand/tinyme-gold.webp" alt="" width="28" height="30" />
+        <strong>TinyMe</strong>
+      </a>
+      <span class="ob-top-spacer" aria-hidden="true"></span>
+    </header>
+
+    <div class="ob-progress" id="ob-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-label="Progress" hidden>
+      <span class="ob-dot is-current" data-step="0"></span>
+      <span class="ob-dot" data-step="1"></span>
+      <span class="ob-dot" data-step="2"></span>
+    </div>
+
+    <main id="ob-main" class="ob-main">
+      <!-- Welcome -->
+      <section class="ob-step is-active" data-step="0" id="step-welcome" aria-labelledby="welcome-title">
+        <h1 id="welcome-title" class="ob-title ob-title-hero">
+          Tiny link.<br />Full control.
+        </h1>
+        <p class="ob-body ob-welcome-sub">
+          Short URL. Swap destinations. Track clicks.
+        </p>
+        <div class="ob-actions ob-actions-welcome">
+          <button type="button" class="btn btn-gold ob-cta" id="btn-start">Create my link</button>
+        </div>
+      </section>
+
+      <!-- Create -->
+      <section class="ob-step" data-step="1" id="step-link" aria-labelledby="link-title" hidden>
+        <h1 id="link-title" class="ob-title">Where should it open?</h1>
+        <p class="ob-body" id="link-body">Paste the full destination URL.</p>
+
+        <form class="ob-form" id="form-link">
+          <label class="op-field ob-field-lg">
+            <span class="mono">Destination</span>
+            <input
+              type="url"
+              id="ob-dest"
+              name="destination"
+              required
+              placeholder="https://your-site.com/offer"
+              spellcheck="false"
+              inputmode="url"
+              autocomplete="url"
+            />
+          </label>
+
+          <div class="ob-chips ob-chips-inline" role="radiogroup" aria-label="Where you will use it" id="intent-chips">
+            <button type="button" class="ob-chip is-selected" role="radio" aria-checked="true" data-intent="print" tabindex="0">
+              <span class="ob-chip-title">Print</span>
+            </button>
+            <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="qr" tabindex="-1">
+              <span class="ob-chip-title">QR</span>
+            </button>
+            <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="social" tabindex="-1">
+              <span class="ob-chip-title">Social</span>
+            </button>
+            <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="swap" tabindex="-1">
+              <span class="ob-chip-title">Swap later</span>
+            </button>
+          </div>
+
+          <button type="button" class="ob-advanced-toggle mono" id="btn-advanced" aria-expanded="false" aria-controls="ob-advanced">
+            Custom slug · optional
+          </button>
+          <div class="ob-advanced" id="ob-advanced" hidden>
+            <div class="ob-form-row">
+              <label class="op-field">
+                <span class="mono">Slug</span>
+                <input type="text" id="ob-slug" name="slug" pattern="[a-zA-Z0-9_-]*" placeholder="auto" spellcheck="false" autocomplete="off" />
+              </label>
+              <label class="op-field">
+                <span class="mono">Domain</span>
+                <input type="text" id="ob-domain" name="domain" placeholder="default" spellcheck="false" autocomplete="off" />
+              </label>
+            </div>
+          </div>
+
+          <div class="ob-preview-card" id="ob-preview-card">
+            <p class="ob-preview-short" id="ob-preview">tinyme.cc/auto</p>
+            <p class="ob-preview-to mono" id="ob-preview-to">→ paste a destination</p>
+          </div>
+
+          <p class="ob-hint mono" id="link-hint" aria-live="polite"></p>
+
+          <div class="ob-actions">
+            <button type="submit" class="btn btn-gold ob-cta" id="btn-create">Create link</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Done -->
+      <section class="ob-step" data-step="2" id="step-done" aria-labelledby="done-title" hidden>
+        <h1 id="done-title" class="ob-title sr-only">Link ready</h1>
+
+        <div class="ob-success" id="ob-success">
+          <div class="ob-success-ring" aria-hidden="true"></div>
+          <span class="mono ob-success-label">Your short address</span>
+          <button type="button" class="ob-short" id="ob-short" aria-label="Copy short address"></button>
+          <p class="ob-success-to" id="ob-success-to"></p>
+          <p class="ob-success-meta mono" id="ob-success-meta"></p>
+          <p class="ob-local-resolve mono" id="ob-local-resolve" hidden></p>
+        </div>
+
+        <p class="ob-body ob-done-line" id="done-body">
+          Share it now. Change the destination anytime in the console.
+        </p>
+
+        <p class="ob-hint mono" id="done-hint" aria-live="polite"></p>
+
+        <div class="ob-actions">
+          <button type="button" class="btn btn-gold ob-cta" id="btn-copy">Copy address</button>
+          <a class="ob-secondary" href="/console?skip=1" id="btn-console">Open console</a>
+          <button type="button" class="ob-secondary" id="btn-another">Make another</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="ob-sheet" id="ob-sheet" hidden>
+      <div class="ob-sheet-panel" role="dialog" aria-labelledby="sheet-title" aria-modal="true">
+        <p class="ob-kicker mono">Connection</p>
+        <h2 id="sheet-title" class="ob-sheet-title">Cannot reach the API</h2>
+        <p class="ob-body ob-sheet-body" id="sheet-body">
+          Start the TinyMe API, then try again.
+        </p>
+        <form class="ob-form" id="form-connect" autocomplete="off">
+          <label class="op-field">
+            <span class="mono">API base</span>
+            <input type="url" id="ob-api-base" value="http://localhost:8080" required spellcheck="false" />
+          </label>
+          <label class="op-field">
+            <span class="mono">API key</span>
+            <input type="password" id="ob-api-key" placeholder="Your API key" autocomplete="off" spellcheck="false" />
+          </label>
+          <p class="ob-hint mono" id="connect-hint" aria-live="polite"></p>
+          <div class="ob-actions">
+            <button type="submit" class="btn btn-gold ob-cta" id="btn-connect">Retry</button>
+            <button type="button" class="ob-secondary" id="btn-sheet-close">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="ob-foot mono" id="ob-foot">
+      <span>Ordani · TinyMe</span>
+      <span id="ob-foot-status" class="ob-foot-status" hidden></span>
+    </footer>
+  </div>
+
+  <script src="/domain-lock.js" defer></script>
+  <script src="/onboarding.js" defer></script>
+</body>
+</html>

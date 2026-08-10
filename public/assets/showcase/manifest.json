@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "title": "World - threshold",
+      "src": "/assets/world/ch-00/plate.webp"
+    },
+    {
+      "title": "Onboarding - print",
+      "src": "/assets/onboarding/world/ob-print.webp"
+    },
+    {
+      "title": "Onboarding - QR",
+      "src": "/assets/onboarding/world/ob-qr.webp"
+    },
+    {
+      "title": "Onboarding - social",
+      "src": "/assets/onboarding/world/ob-social.webp"
+    },
+    {
+      "title": "Domain STOP - still",
+      "src": "/assets/onboarding/halt/stop-poster.jpg"
+    },
+    {
+      "title": "Domain STOP - loop",
+      "src": "/assets/onboarding/halt/stop-soft.mp4",
+      "type": "video"
+    },
+    {
+      "title": "Hero - space",
+      "src": "/assets/hero/space-poster.webp"
+    },
+    {
+      "title": "TinyMe mark",
+      "src": "/assets/brand/tinyme-gold.webp"
+    }
+  ]
+}

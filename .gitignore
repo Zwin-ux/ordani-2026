@@ -1,40 +1,9 @@
-# Dependencies
-node_modules/
+# GitHub Pages build output
+/dist/
 
-# Build artifacts
-backend/server
-backend/server.exe
-*.exe
-*.dll
-*.so
-*.dylib
-
-# Go
-go.work
-go.work.sum
-
-# Environment
+# Local env / binaries
 .env
-.env.local
-.env.*.local
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-Desktop.ini
-
-# Logs
-*.log
-npm-debug.log*
-
-# Temp
+.env.*
+!.env.example
 tmp/
-temp/
-*.tmp
+*.exe

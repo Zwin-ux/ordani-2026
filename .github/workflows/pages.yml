@@ -1,0 +1,57 @@
+# Deploy static studio + TinyMe demo to GitHub Pages
+# Repo → Settings → Pages → Source: GitHub Actions
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - "scripts/build-pages.mjs"
+      - ".github/workflows/pages.yml"
+      - "package.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build dist
+        env:
+          # Project site: https://zwin-ux.github.io/ordani-2026/
+          # Custom domain at root: change to "" and set Pages custom domain in Settings
+          PAGES_BASE: "/ordani-2026"
+        run: node scripts/build-pages.mjs
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

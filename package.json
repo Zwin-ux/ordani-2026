@@ -2,10 +2,16 @@
   "name": "ordani-2026",
   "version": "2.0.0",
   "private": true,
-  "description": "Ordani Studios 2026 — redesigned homepage and TinyMe product page",
+  "description": "Ordani Studios 2026 — studio site, TinyMe product, scroll world",
   "scripts": {
     "dev": "node scripts/server.mjs",
     "start": "node scripts/server.mjs",
-    "check": "node scripts/validate.mjs"
+    "check": "node scripts/validate.mjs",
+    "serve": "node scripts/server.mjs",
+    "pages:build": "node scripts/build-pages.mjs",
+    "pages:preview": "node scripts/build-pages.mjs && node scripts/server.mjs --root dist"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

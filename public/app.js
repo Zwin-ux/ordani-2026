@@ -6,6 +6,8 @@
 
   // --- HEADER SCROLL BEHAVIOR ---
   const header = document.querySelector("[data-header]");
+  // Spin mark only (gear/hex), not full wordmarks
+  const brandLogo = document.querySelector(".site-header .brand .brand-mark, .site-header .tinyme-brand img");
   const progressBar = document.createElement("div");
   progressBar.className = "scroll-progress";
   progressBar.setAttribute("aria-hidden", "true");
@@ -13,26 +15,33 @@
   document.body.prepend(progressBar);
   const progressFill = progressBar.querySelector("span");
 
-  let previousScroll = window.scrollY;
   let ticking = false;
 
   const updateScrollUI = () => {
     const current = window.scrollY;
     const total = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const progress = clamp(current / total, 0, 1);
 
     if (progressFill) {
-      progressFill.style.width = `${clamp((current / total) * 100, 0, 100)}%`;
+      progressFill.style.width = `${progress * 100}%`;
     }
 
+    // Keep header + logo visible so the mark can keep spinning
     if (header) {
       header.classList.toggle("is-scrolled", current > 20);
-      const movingDown = current > previousScroll && current > 160;
-      header.classList.toggle("is-hidden", movingDown);
+      header.classList.remove("is-hidden");
     }
 
-    previousScroll = current;
+    // Scroll-driven brand mark rotation: full page ≈ one turn
+    if (brandLogo && !prefersReducedMotion) {
+      brandLogo.style.transform = `rotate(${progress * 360}deg)`;
+    }
+
     ticking = false;
   };
+
+  // Run once so logo state is correct on load / refresh mid-page
+  updateScrollUI();
 
   window.addEventListener("scroll", () => {
     if (!ticking) {
@@ -40,6 +49,84 @@
       ticking = true;
     }
   }, { passive: true });
+
+  // Soft-loop videos (hero + team): fade in when ready; pause/hide for reduced motion
+  const softVideos = document.querySelectorAll("[data-hero-video], [data-team-video]");
+  softVideos.forEach((video) => {
+    if (prefersReducedMotion) {
+      video.removeAttribute("autoplay");
+      video.pause();
+      video.hidden = true;
+      video.removeAttribute("src");
+      video.querySelectorAll("source").forEach((source) => source.remove());
+      video.load();
+      return;
+    }
+
+    const markReady = () => video.classList.add("is-ready");
+    video.addEventListener("loadeddata", markReady, { once: true });
+    video.addEventListener("canplay", markReady, { once: true });
+    if (video.readyState >= 2) markReady();
+
+    const play = video.play();
+    if (play && typeof play.catch === "function") {
+      play.catch(() => {
+        /* autoplay blocked — poster remains */
+      });
+    }
+  });
+
+  // Hero world parallax — subtle "pinch/depth" on mouse move
+  const hero = document.querySelector("[data-hero]");
+  if (hero && !prefersReducedMotion) {
+    const layers = [...hero.querySelectorAll("[data-parallax]")];
+    let targetX = 0;
+    let targetY = 0;
+    let currX = 0;
+    let currY = 0;
+    let parallaxRaf = 0;
+
+    const applyParallax = () => {
+      currX += (targetX - currX) * 0.06;
+      currY += (targetY - currY) * 0.06;
+
+      layers.forEach((el) => {
+        const depth = Number(el.getAttribute("data-parallax")) || 0.3;
+        // Depth feel: far moves less, near moves more (pinch / tilt)
+        const x = currX * depth * 28;
+        const y = currY * depth * 20;
+        const scale = 1 + Math.abs(currX * depth) * 0.018 + Math.abs(currY * depth) * 0.012;
+        el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+      });
+
+      if (Math.abs(targetX - currX) > 0.001 || Math.abs(targetY - currY) > 0.001) {
+        parallaxRaf = window.requestAnimationFrame(applyParallax);
+      } else {
+        parallaxRaf = 0;
+      }
+    };
+
+    const onMove = (clientX, clientY) => {
+      const rect = hero.getBoundingClientRect();
+      if (rect.width < 1 || rect.height < 1) return;
+      // -1 … 1 from center
+      targetX = ((clientX - rect.left) / rect.width - 0.5) * 2;
+      targetY = ((clientY - rect.top) / rect.height - 0.5) * 2;
+      targetX = clamp(targetX, -1, 1);
+      targetY = clamp(targetY, -1, 1);
+      if (!parallaxRaf) parallaxRaf = window.requestAnimationFrame(applyParallax);
+    };
+
+    hero.addEventListener("pointermove", (e) => {
+      onMove(e.clientX, e.clientY);
+    }, { passive: true });
+
+    hero.addEventListener("pointerleave", () => {
+      targetX = 0;
+      targetY = 0;
+      if (!parallaxRaf) parallaxRaf = window.requestAnimationFrame(applyParallax);
+    }, { passive: true });
+  }
 
   // --- MOBILE MENU ---
   const menuToggle = document.querySelector("[data-menu-toggle]");
