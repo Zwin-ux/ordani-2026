@@ -636,6 +636,40 @@ ul, ol { list-style: none; }
   content: ""; position: absolute; inset: 26px;
   border: 1px dashed rgba(92,176,206,0.2); border-radius: inherit;
 }
+/* GTA V server — tactical card, no rockstar marks */
+.gta-visual {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 40% 40%, rgba(232, 93, 4, 0.14), transparent 45%),
+    linear-gradient(160deg, #12100e 0%, #0a0908 100%);
+}
+.gta-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  border: 1px solid rgba(232, 93, 4, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  min-width: 140px;
+}
+.gta-mark {
+  color: var(--orange);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+.gta-sub {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.gta-row:hover .gta-stage {
+  border-color: rgba(232, 93, 4, 0.6);
+}
 .project-copy h3 {
   margin: 16px 0 12px;
   font-family: var(--font-display);
@@ -643,6 +677,24 @@ ul, ol { list-style: none; }
   line-height: 0.92; letter-spacing: -0.05em; font-weight: 700;
 }
 .project-copy > p { max-width: 680px; margin: 0; color: var(--paper-soft); font-size: 17px; }
+.project-copy .project-pitch {
+  margin-top: 10px;
+  color: var(--paper);
+  font-size: 17px;
+  font-weight: 500;
+}
+.project-copy .text-link {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--orange);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.project-copy .text-link:hover {
+  color: var(--paper);
+}
 .project-tags {
   display: flex; flex-wrap: wrap; gap: 10px 20px;
   margin-top: 28px; color: var(--muted);

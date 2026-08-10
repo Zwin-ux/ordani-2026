@@ -30,6 +30,15 @@
       ]
     },
     {
+      "id": "gta5-server",
+      "name": "GTA 5 server",
+      "category": "Game infrastructure",
+      "status": "Active",
+      "tagline": "Custom GTA V server stacks.",
+      "description": "Want something similar for your server?",
+      "capabilities": []
+    },
+    {
       "id": "research",
       "name": "Ordani Research",
       "category": "Research",
