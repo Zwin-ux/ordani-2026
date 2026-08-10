@@ -174,7 +174,7 @@
 
   async function api(method, path, body) {
     const { base, key } = getConfig();
-    if (!base) throw new ApiError(0, "API base missing.");
+    if (!base) throw new ApiError(0, "offline");
 
     const headers = { Accept: "application/json" };
     if (key) headers.Authorization = `Bearer ${key}`;
