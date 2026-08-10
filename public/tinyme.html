@@ -26,36 +26,35 @@
 
   <main id="tm-main" class="tm-film-main">
     <!--
-      Design (single job):
-      1 film. 1 idea. 1 CTA.
-      Scroll = scrub the film. No multi-plate world. No SIGNAL. No chapter theater.
+      One Higgsfield world film. Autoplay loop.
+      No scroll-scrub. No multi-plate. No chapter theater.
+      Short page: film → Make a link.
     -->
-    <div class="tm-film-stage" data-world-stage>
+    <section class="tm-film-hero" aria-label="TinyMe">
       <video
         class="tm-film-video"
         data-stage-video
         poster="/assets/world/ch-00/plate.webp"
         muted
         playsinline
-        preload="auto"
+        autoplay
         loop
+        preload="auto"
       >
         <source src="/assets/world/film/tinyme-world.mp4" type="video/mp4" />
       </video>
       <div class="tm-film-veil" aria-hidden="true"></div>
-      <div class="tm-film-copy" data-stage-copy>
+      <div class="tm-film-copy">
         <p class="tm-film-kicker mono">TINYME</p>
         <h1 class="tm-film-title">
           Little link.<br />
           <span class="gold">Big features.</span>
         </h1>
         <p class="tm-film-line">Short URL. Swap destinations.</p>
+        <a class="btn btn-gold tm-film-cta" href="/onboarding">Make a link <span aria-hidden="true">↗</span></a>
       </div>
-      <a class="tm-film-skip mono" href="#exit">Make a link ↓</a>
-    </div>
-
-    <!-- Scroll length only exists to scrub the film -->
-    <div class="tm-film-track" data-world-track aria-hidden="true"></div>
+      <a class="tm-film-skip mono" href="#exit">More ↓</a>
+    </section>
 
     <section class="tm-film-exit" id="exit" aria-labelledby="exit-title">
       <img src="/assets/brand/tinyme-gold.webp" alt="" width="48" height="52" />

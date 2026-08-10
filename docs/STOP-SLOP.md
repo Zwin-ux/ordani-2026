@@ -39,7 +39,7 @@
 | Sell the idea of a durable short link | Quiet, gold, controlled | Not Bitly SaaS; no multi-chapter lesson | **One Higgsfield world film** |
 
 - **One film only:** `public/assets/world/film/tinyme-world.mp4` (Higgsfield i2v from ch-00 plate).
-- **Scroll = scrub.** No 5–6 plates. No chapter ticks. No VOID / SIGNAL / 05–06.
+- **Autoplay loop** — do **not** scroll-scrub (feels broken). Page is short: film hero → Make a link.
 - **Fixed copy on film:** Little link. Big features. · Short URL. Swap destinations.
-- **One CTA:** Make a link.
-- **Banned:** signal language, bots, feature tags, dual CTAs, feature grids, multi-video carousel.
+- **One CTA:** Make a link (hero + exit).
+- **Banned:** signal language, bots, feature tags, dual CTAs, feature grids, multi-video carousel, sticky multi-chapter scrub.

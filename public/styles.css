@@ -1847,15 +1847,16 @@ body[data-page="tinyme"] { background: var(--carbon); }
 body[data-page="world"] .scroll-progress,
 body[data-page="tinyme"] .scroll-progress { display: none; }
 
-/* ========== TinyMe: ONE film world ========== */
+/* ========== TinyMe: ONE film, no scroll-scrub ========== */
 body[data-page="tinyme"] {
   background: #050505;
 }
 body[data-page="tinyme"] .tm-simple-header,
 body[data-page="tinyme"] .world-header {
-  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.75), transparent);
+  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.8), transparent);
   border-bottom: 0;
   backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 body[data-page="tinyme"] .world-header .header-cta {
   border-color: rgba(221, 173, 78, 0.55);
@@ -1865,21 +1866,22 @@ body[data-page="tinyme"] .world-header .header-cta:hover {
   border-color: var(--gold);
   color: var(--paper);
 }
-body[data-page="tinyme"] .desktop-nav {
-  display: none; /* one primary path */
+body[data-page="tinyme"] .desktop-nav,
+body[data-page="tinyme"] .menu-toggle {
+  display: none;
 }
 
 .tm-film-main {
   position: relative;
 }
-.tm-film-stage {
-  position: sticky;
-  top: 0;
+
+/* Full-viewport film hero — normal flow, not sticky scrub */
+.tm-film-hero {
+  position: relative;
   height: 100svh;
-  width: 100%;
+  min-height: 560px;
   overflow: hidden;
   background: #050505;
-  z-index: 1;
 }
 .tm-film-video {
   position: absolute;
@@ -1887,22 +1889,26 @@ body[data-page="tinyme"] .desktop-nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 40%;
 }
 .tm-film-veil {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to top, rgba(5, 5, 5, 0.88) 0%, rgba(5, 5, 5, 0.2) 42%, rgba(5, 5, 5, 0.45) 100%),
-    radial-gradient(ellipse at 50% 40%, transparent 20%, rgba(0, 0, 0, 0.45) 100%);
   pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(5, 5, 5, 0.92) 0%, rgba(5, 5, 5, 0.25) 45%, rgba(5, 5, 5, 0.5) 100%),
+    radial-gradient(ellipse at 50% 35%, transparent 15%, rgba(0, 0, 0, 0.5) 100%);
 }
 .tm-film-copy {
   position: absolute;
   left: max(24px, calc((100vw - var(--shell, 1120px)) / 2));
-  bottom: 14vh;
+  bottom: 12vh;
   z-index: 2;
-  max-width: min(92vw, 20ch);
+  max-width: min(92vw, 22ch);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
 }
 .tm-film-kicker {
   margin: 0 0 12px;
@@ -1924,59 +1930,58 @@ body[data-page="tinyme"] .desktop-nav {
   color: var(--gold);
 }
 .tm-film-line {
-  margin: 0;
+  margin: 0 0 22px;
   color: var(--paper-soft);
   font-size: clamp(16px, 2.2vw, 20px);
   line-height: 1.4;
   max-width: 18ch;
 }
+.tm-film-cta {
+  margin-top: 4px;
+}
 .tm-film-skip {
   position: absolute;
   right: max(24px, calc((100vw - var(--shell, 1120px)) / 2));
-  bottom: 8vh;
+  bottom: 6vh;
   z-index: 2;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
+  scroll-behavior: smooth;
 }
 .tm-film-skip:hover {
   color: var(--gold);
 }
-/* Scroll fuel for scrub — not chapters */
-.tm-film-track {
-  position: relative;
-  z-index: 0;
-  height: 180vh;
-  margin-top: -100svh;
-  pointer-events: none;
-}
+
+/* Exit sits right under hero — short natural scroll */
 .tm-film-exit {
   position: relative;
   z-index: 2;
-  min-height: 72svh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 16px;
-  padding: 80px max(24px, calc((100vw - var(--shell, 1120px)) / 2)) 100px;
+  gap: 14px;
+  padding: 72px max(24px, calc((100vw - var(--shell, 1120px)) / 2)) 88px;
   background: #050505;
   border-top: 1px solid var(--line);
 }
 .tm-film-exit h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(40px, 8vw, 64px);
+  font-size: clamp(36px, 7vw, 56px);
   letter-spacing: -0.04em;
   color: var(--gold);
   line-height: 1;
 }
 .tm-film-exit p {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: var(--paper-soft);
-  font-size: 18px;
+  font-size: 17px;
   max-width: 28ch;
+  line-height: 1.45;
 }
 .tm-simple-foot {
   border-top: 1px solid var(--line);
@@ -1989,24 +1994,28 @@ body[data-page="tinyme"] .tm-simple-foot .footer-bottom {
 }
 
 @media (max-width: 640px) {
+  .tm-film-hero {
+    min-height: 100svh;
+  }
   .tm-film-copy {
-    bottom: 18vh;
+    bottom: 16vh;
     left: 20px;
     right: 20px;
     max-width: none;
   }
   .tm-film-skip {
-    right: 20px;
-    bottom: 6vh;
+    left: 20px;
+    right: auto;
+    bottom: 5vh;
   }
-  .tm-film-track {
-    height: 160vh;
+  .tm-film-exit {
+    padding: 56px 20px 72px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tm-film-video {
-    /* poster still via first frame; no scrub required */
+    /* JS freezes near first frame */
   }
 }
 
