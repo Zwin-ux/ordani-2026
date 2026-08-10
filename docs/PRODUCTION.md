@@ -9,7 +9,7 @@
 
 | Surface | Status | Notes |
 |---------|--------|-------|
-| Studio home `/` | Live | Products, GTA server card, team (Abel headshot fixed) |
+| Studio home `/` | Live | Products, TFR Ch4 website, team (Abel headshot fixed) |
 | TinyMe `/tinyme` | Live | One Higgsfield film, autoplay, Make a link CTA |
 | Onboarding `/onboarding` | Live | Create UI; offline → red demo interrupt |
 | Console `/console` | Live | Operator shell; offline → same demo interrupt |

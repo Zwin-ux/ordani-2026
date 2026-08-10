@@ -45,7 +45,6 @@ const ROUTES = {
   "/onboarding": "/onboarding.html",
   "/setup": "/onboarding.html",
   "/showcase": "/showcase.html",
-  "/setup": "/onboarding.html",
 };
 
 const send = (res, status, data, type, cache = "no-cache") => {

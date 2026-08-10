@@ -51,10 +51,10 @@
       <span class="ob-top-spacer" aria-hidden="true"></span>
     </header>
 
-    <div class="ob-progress" id="ob-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-label="Progress" hidden>
-      <span class="ob-dot is-current" data-step="0"></span>
-      <span class="ob-dot" data-step="1"></span>
+    <div class="ob-progress" id="ob-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-label="Progress" hidden>
+      <span class="ob-dot is-current" data-step="1"></span>
       <span class="ob-dot" data-step="2"></span>
+      <span class="ob-dot" data-step="3"></span>
     </div>
 
     <main id="ob-main" class="ob-main">
@@ -71,8 +71,37 @@
         </div>
       </section>
 
+      <!-- Intent -->
+      <section class="ob-step" data-step="1" id="step-intent" aria-labelledby="intent-title" hidden>
+        <h1 id="intent-title" class="ob-title">Where will people see it?</h1>
+        <p class="ob-body">Pick the first place this link will live.</p>
+
+        <div class="ob-chips" role="radiogroup" aria-label="Where you will use it" id="intent-chips">
+          <button type="button" class="ob-chip is-selected" role="radio" aria-checked="true" data-intent="print" tabindex="0">
+            <span class="ob-chip-title">Print</span>
+            <span class="ob-chip-note mono">Cards · posters</span>
+          </button>
+          <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="qr" tabindex="-1">
+            <span class="ob-chip-title">QR code</span>
+            <span class="ob-chip-note mono">Menus · signs</span>
+          </button>
+          <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="social" tabindex="-1">
+            <span class="ob-chip-title">Social</span>
+            <span class="ob-chip-note mono">Bio · posts</span>
+          </button>
+          <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="swap" tabindex="-1">
+            <span class="ob-chip-title">Swap later</span>
+            <span class="ob-chip-note mono">One link · many drops</span>
+          </button>
+        </div>
+
+        <div class="ob-actions">
+          <button type="button" class="btn btn-gold ob-cta" id="btn-intent">Continue</button>
+        </div>
+      </section>
+
       <!-- Create -->
-      <section class="ob-step" data-step="1" id="step-link" aria-labelledby="link-title" hidden>
+      <section class="ob-step" data-step="2" id="step-link" aria-labelledby="link-title" hidden>
         <h1 id="link-title" class="ob-title">Where should it open?</h1>
         <p class="ob-body" id="link-body">Paste the full destination URL.</p>
 
@@ -90,21 +119,6 @@
               autocomplete="url"
             />
           </label>
-
-          <div class="ob-chips ob-chips-inline" role="radiogroup" aria-label="Where you will use it" id="intent-chips">
-            <button type="button" class="ob-chip is-selected" role="radio" aria-checked="true" data-intent="print" tabindex="0">
-              <span class="ob-chip-title">Print</span>
-            </button>
-            <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="qr" tabindex="-1">
-              <span class="ob-chip-title">QR</span>
-            </button>
-            <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="social" tabindex="-1">
-              <span class="ob-chip-title">Social</span>
-            </button>
-            <button type="button" class="ob-chip" role="radio" aria-checked="false" data-intent="swap" tabindex="-1">
-              <span class="ob-chip-title">Swap later</span>
-            </button>
-          </div>
 
           <button type="button" class="ob-advanced-toggle mono" id="btn-advanced" aria-expanded="false" aria-controls="ob-advanced">
             Custom slug · optional
@@ -136,7 +150,7 @@
       </section>
 
       <!-- Done -->
-      <section class="ob-step" data-step="2" id="step-done" aria-labelledby="done-title" hidden>
+      <section class="ob-step" data-step="3" id="step-done" aria-labelledby="done-title" hidden>
         <h1 id="done-title" class="ob-title sr-only">Link ready</h1>
 
         <div class="ob-success" id="ob-success">
